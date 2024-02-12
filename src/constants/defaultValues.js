@@ -43,7 +43,7 @@ const dev = {
         name: "bebe",
         endpoint:
           process.env.REACT_APP_STAGE === "dev"
-            ? "https://api.planforfit.com/fit_carrot"
+            ? "https://api.planforfit.com/preem_bettershape"
             : "http://localhost:3003",
         region: "ap-southeast-1",
       },
@@ -68,14 +68,14 @@ const prod = {
     endpoints: [
       {
         name: "bebe",
-        endpoint: "https://api.planforfit.com/fit_carrot",
+        endpoint: "https://api.planforfit.com/preem_bettershape",
         region: "ap-southeast-1",
       },
     ],
   },
 };
 
-const config = process.env.REACT_APP_STAGE === "prod" ? prod : prod; // แก้เป็น prod เพื่อทดสอบจาก data challenge จริงๆ
+const config = process.env.REACT_APP_STAGE === "prod" ? prod : dev; // แก้เป็น prod เพื่อทดสอบจาก data challenge จริงๆ
 
 export const awsConfig = {
   // Add common config values here
