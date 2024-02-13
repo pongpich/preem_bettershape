@@ -111,14 +111,18 @@ export default function Nutrition() {
       </div>
 
       <div className="container-sm">
+        <div
+          className="progress2"
+          role="progressbar"
+          aria-label="Basic example"
+          aria-valuenow="75"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          <div className="progress-bar w-75"></div>
+        </div>
+        <br />
         <div className="mb-5">
-          <Progress
-            className="my-3 progress"
-            style={{
-              height: "3px",
-            }}
-            value={45}
-          />
           <Progress value={progress} />
           <div
             className="d-flex align-items-center justify-content-between"

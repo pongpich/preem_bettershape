@@ -31,3 +31,15 @@
     font-size: 1.6rem;
   }
 }
+
+.progress2 {
+  display: flex !important;
+  height: 3px !important;
+  overflow: hidden !important;
+  font-size: .75rem !important;
+  background-color: #e9ecef !important;
+  border-radius: 20px !important;
+  margin-left: 60px !important;
+  margin-right: 60px !important;
+  margin-top: -10px !important;
+}
