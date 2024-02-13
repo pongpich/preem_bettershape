@@ -7,6 +7,11 @@ const data = [
 ];
 
 export default function FoodSource({ handleNext }) {
+  const [activeColor, setActiveColor] = React.useState("");
+
+  const handleActiveColor = (id) => {
+    setActiveColor(id);
+  };
   return (
     <div>
       <h3>2. อาหารประจำวันของคุณมาจากแหล่งใด เป็นส่วนใหญ่</h3>
@@ -17,9 +22,11 @@ export default function FoodSource({ handleNext }) {
             border: "1px solid #EF60A3",
             borderRadius: ".5rem",
             padding: "20px",
-            background: "#FCDEEC",
+            background: activeColor === item.id ? "#FCDEEC" : "",
             marginBottom: "20px",
+            cursor: "pointer",
           }}
+          onClick={() => handleActiveColor(item.id)}
         >
           <h5>{item.title}</h5>
         </div>

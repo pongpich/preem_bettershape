@@ -26,7 +26,7 @@ import TestGPS_GG from "./views/test_gps_gg";
 import TestGPS_Permission from "./views/test_gps_permission";
 import BonusChallenge from "./views/bonus_challenge";
 import Footer from "./views/footer";
-import Header from "./assets/img/header.png";
+import Header from "./assets/img/header_preem.png";
 import Header_icon from "./assets/img/header_icon.png";
 
 import { awsConfig } from "./constants/defaultValues";
@@ -45,7 +45,7 @@ class App extends Component {
       statusNews: "default",
       overlay: false,
       overlay2: false,
-      showPopupIntro: false
+      showPopupIntro: false,
     };
   }
 
@@ -88,7 +88,7 @@ class App extends Component {
 
     if (
       prevProps.statusGetCheckQuestionnaireLog !==
-      statusGetCheckQuestionnaireLog &&
+        statusGetCheckQuestionnaireLog &&
       statusGetCheckQuestionnaireLog === "success"
     ) {
       let week;
@@ -279,8 +279,8 @@ class App extends Component {
     if (popupName === "popupIntroVDO") {
       document.getElementById("popupIntroVDO").classList.toggle("active");
       this.setState({
-        showPopupIntro: true
-      })
+        showPopupIntro: true,
+      });
     }
     if (popupName === "popupQuestionnaire") {
       document.getElementById("popupQuestionnaire").classList.toggle("active");
@@ -298,8 +298,8 @@ class App extends Component {
     if (popupName === "popupIntroVDO") {
       document.getElementById("popupIntroVDO").classList.toggle("active");
       this.setState({
-        showPopupIntro: false
-      })
+        showPopupIntro: false,
+      });
     }
     if (popupName === "popupQuestionnaire") {
       document.getElementById("popupQuestionnaire").classList.toggle("active");
@@ -315,18 +315,33 @@ class App extends Component {
     const { overlay, overlay2 } = this.state;
     return (
       <div className="header">
-         <header>
-        <img src={Header} alt="Header Image" className="header2" />
-        <img src={Header_icon} alt="Header Image" className="header-button"   onClick={() => this.toggle("popupIntroVDO")}/>
-        {/* <img src={Header_icon} className="header-button">Click Me</img> */}
-      </header>
+        <header>
+          <img src={Header} alt="Header Image" className="header2" />
+          <img
+            src={Header_icon}
+            alt="Header Image"
+            className="header-button"
+            onClick={() => this.toggle("popupIntroVDO")}
+          />
+          {/* <img src={Header_icon} className="header-button">Click Me</img> */}
+        </header>
         <div className="popupIntroVDO" id={`popupIntroVDO`}>
-          <img alt="" src="./assets/img/thumb/close.png" className="close" onClick={() => this.closeToggle('popupIntroVDO')}></img>
-          {
-            showPopupIntro &&
+          <img
+            alt=""
+            src="./assets/img/thumb/close.png"
+            className="close"
+            onClick={() => this.closeToggle("popupIntroVDO")}
+          ></img>
+          {showPopupIntro && (
             <iframe
-              src="https://stream-player.byteark.com/players/6540b05c1524da29c9b6843b/videos/U2YLrVDY1YYs" width="560" height="320" frameborder="0" allowfullscreen referrerpolicy="origin">
-            </iframe>}
+              src="https://stream-player.byteark.com/players/6540b05c1524da29c9b6843b/videos/U2YLrVDY1YYs"
+              width="560"
+              height="320"
+              frameborder="0"
+              allowfullscreen
+              referrerpolicy="origin"
+            ></iframe>
+          )}
         </div>
 
         {overlay && (
@@ -439,7 +454,7 @@ class App extends Component {
         {/* {this.renderTopbar()} */}
         {this.renderNavbar()}
         {this.props.user && this.renderHeader()}
-        
+
         <Switch>
           <Route exact path="/">
             <Redirect to="/login" />
@@ -450,7 +465,7 @@ class App extends Component {
           {/* <Route path='/register' component={Register} />
           <Route path='/forgot-password' component={ForgotPassword} /> */}
           <Route path="/import-Members" component={ImportMembers} />
-          <Route path="/Challenges" component={Challenges} />
+          {/* <Route path="/Challenges" component={Challenges} /> */}
           <Route path="/Dashboard" component={Dashboard} />
           <Route path="/VideoList" component={VideoList} />
           <Route path="/VideoList2" component={VideoList2} />

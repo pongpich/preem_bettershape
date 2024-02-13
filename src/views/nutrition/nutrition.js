@@ -8,6 +8,9 @@ import ControlProblem from "./control_problem";
 import TableNutritionService from "../../components/service_ui/tableNutrition";
 import IconNutrition from "../../assets/img/icon_Nutrition.png";
 import IconCarb from "../../assets/img/icon_Carb.png";
+import IconProtein from "../../assets/img/icon_protein.png";
+import IconFat from "../../assets/img/icon_fat.png";
+import IconSuggest from "../../assets/img/icon_suggest.png";
 
 const steps = [
   "Select campaign settings",
@@ -111,18 +114,18 @@ export default function Nutrition() {
       </div>
 
       <div className="container-sm">
-        <div
-          className="progress2"
-          role="progressbar"
-          aria-label="Basic example"
-          aria-valuenow="75"
-          aria-valuemin="0"
-          aria-valuemax="100"
-        >
-          <div className="progress-bar w-75"></div>
-        </div>
         <br />
         <div className="mb-5">
+          {/* <div
+            className="progress2"
+            role="progressbar"
+            aria-label="Basic example"
+            aria-valuenow={progress}
+            aria-valuemin={progress}
+            aria-valuemax={progress}
+          >
+            <div className="progress-bar w-75" />
+          </div> */}
           <Progress value={progress} />
           <div
             className="d-flex align-items-center justify-content-between"
@@ -157,7 +160,7 @@ export default function Nutrition() {
               alt="demo"
               style={{ width: 40, height: 40, marginRight: "20px" }}
             />
-            <h3>สารอาหารที่แนะนำ</h3>
+            <h3 className="mt-2">สารอาหารที่แนะนำ</h3>
           </div>
           <TableNutritionService
             columns={columnsNutrients}
@@ -170,9 +173,9 @@ export default function Nutrition() {
             <img
               src={IconCarb}
               alt="demo"
-              style={{ width: 40, height: 40, marginRight: "20px" }}
+              style={{ width: 50, height: 50, marginRight: "20px" }}
             />
-            <h3>ประเภทอาหารที่แนะนำ (คาร์โบไฮเดรต)</h3>
+            <h3 className="mt-3">ประเภทอาหารที่แนะนำ (คาร์โบไฮเดรต)</h3>
           </div>
           <TableNutritionService columns={columnsCarb} rows={rowsCarb} />
         </div>
@@ -180,11 +183,11 @@ export default function Nutrition() {
         <div className="mt-5">
           <div className="d-flex align-items-center gap-4 mb-3">
             <img
-              src={IconNutrition}
+              src={IconProtein}
               alt="demo"
               style={{ width: 40, height: 40, marginRight: "20px" }}
             />
-            <h3>ประเภทอาหารที่แนะนำ (โปรตีน)</h3>
+            <h3 className="mt-2">ประเภทอาหารที่แนะนำ (โปรตีน)</h3>
           </div>
           <TableNutritionService columns={columnsProtein} rows={rowsProtein} />
         </div>
@@ -192,11 +195,11 @@ export default function Nutrition() {
         <div className="mt-5">
           <div className="d-flex align-items-center gap-4 mb-3">
             <img
-              src={IconNutrition}
+              src={IconFat}
               alt="demo"
               style={{ width: 40, height: 40, marginRight: "20px" }}
             />
-            <h3>ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
+            <h3 className="mt-2">ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
           </div>
           <TableNutritionService columns={columnsFat} rows={rowsFat} />
         </div>
@@ -204,11 +207,11 @@ export default function Nutrition() {
         <div className="mt-5">
           <div className="d-flex align-items-center gap-4">
             <img
-              src={IconNutrition}
+              src={IconSuggest}
               alt="demo"
               style={{ width: 40, height: 40, marginRight: "20px" }}
             />
-            <h3>คำแนะนำ</h3>
+            <h3 className="mt-2">คำแนะนำ</h3>
           </div>
           <div
             style={{

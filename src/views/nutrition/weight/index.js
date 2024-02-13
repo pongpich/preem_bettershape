@@ -9,6 +9,10 @@ const data = [
 
 export default function WeightChoice({ handleNext }) {
   const [activeColor, setActiveColor] = React.useState("");
+
+  const handleActiveColor = (id) => {
+    setActiveColor(id);
+  };
   return (
     <div>
       <h3>1.น้ำหนักตัว ปัจจุบัน</h3>
@@ -19,9 +23,11 @@ export default function WeightChoice({ handleNext }) {
             border: "1px solid #EF60A3",
             borderRadius: ".5rem",
             padding: "20px",
-            background: "#FCDEEC",
+            background: activeColor === item.id ? "#FCDEEC" : "",
             marginBottom: "20px",
+            cursor: "pointer",
           }}
+          onClick={() => handleActiveColor(item.id)}
         >
           <h5>{item.title}</h5>
         </div>
