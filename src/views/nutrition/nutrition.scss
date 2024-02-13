@@ -1,0 +1,33 @@
+.btn_pink {
+  background: #ef60a3;
+  width: 300px;
+  border: none;
+  outline: none;
+  border-radius: 1.5rem;
+  color: white;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card_calculate {
+  border: 1px solid #ef60a3;
+  padding: 100px;
+  width: 800px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  margin: 50px 0;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+}
+.title {
+  @media (max-width: 576px) {
+    width: 300px;
+    font-size: 1.6rem;
+  }
+}

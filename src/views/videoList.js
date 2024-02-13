@@ -68,6 +68,8 @@ import VideoExerciseSnack from "./videoExerciseSnack";
 import Modal from "../modals/modal";
 import Modal_Form from "../modals/modal_form";
 import Success_Modal from "../modals/success_modal";
+import Challenges from "./challenges";
+import Nutrition from "./nutrition/nutrition";
 
 class VideoList extends Component {
   constructor(props) {
@@ -118,6 +120,8 @@ class VideoList extends Component {
       modal_show: false,
       success_modal_show: false,
       exerciseSnack: false,
+      showchallenge: false,
+      shownutrition: false,
     };
 
     this.prevPlayTime = 0;
@@ -404,7 +408,7 @@ class VideoList extends Component {
     }
     if (
       prevProps.statusPostDailyWeighChallenge !==
-      statusPostDailyWeighChallenge &&
+        statusPostDailyWeighChallenge &&
       statusPostDailyWeighChallenge === "success"
     ) {
       this.props.history.push("/challenges");
@@ -738,12 +742,30 @@ class VideoList extends Component {
       exerciseSnack: false,
       focusDay: day,
       showBarveAndBurn: false,
+      showchallenge: false,
+      shownutrition: false,
     });
   };
 
   onExerciseSnackChange = () => {
     this.setState({
       exerciseSnack: true,
+      showBarveAndBurn: true,
+    });
+  };
+
+  onChallengeChange = () => {
+    this.setState({
+      shownutrition: false,
+      showchallenge: true,
+      showBarveAndBurn: true,
+    });
+  };
+
+  onNutritionChange = () => {
+    this.setState({
+      showchallenge: false,
+      shownutrition: true,
       showBarveAndBurn: true,
     });
   };
@@ -937,7 +959,7 @@ class VideoList extends Component {
       !video.duration ||
       video.currentTime / video.duration < minimumVideoPlayPercentage ||
       selectedVDO.play_time / selectedVDO.duration >=
-      completeVideoPlayPercentage
+        completeVideoPlayPercentage
     ) {
       return;
     }
@@ -1712,8 +1734,8 @@ class VideoList extends Component {
                         item.category !== "Challenge" &&
                         ((item.category === "Warm Up" ||
                           item.category === "Cool Down") &&
-                          member_info &&
-                          member_info.program_level === "bfr_lv1" ? (
+                        member_info &&
+                        member_info.program_level === "bfr_lv1" ? (
                           <div></div>
                         ) : (
                           <div
@@ -2578,17 +2600,17 @@ class VideoList extends Component {
                 onClick={
                   step4WeeksPrompt < 3
                     ? () =>
-                      this.setState({
-                        step4WeeksPrompt: step4WeeksPrompt + 1,
-                      })
+                        this.setState({
+                          step4WeeksPrompt: step4WeeksPrompt + 1,
+                        })
                     : () =>
-                      this.props.updateProgramPromptLog(
-                        user.user_id,
-                        !statusCheckRenewPrompt
-                          ? "4 weeks prompt"
-                          : "renew prompt",
-                        "level up"
-                      )
+                        this.props.updateProgramPromptLog(
+                          user.user_id,
+                          !statusCheckRenewPrompt
+                            ? "4 weeks prompt"
+                            : "renew prompt",
+                          "level up"
+                        )
                 }
                 style={{
                   width: step4WeeksPrompt < 3 ? 250 : 300,
@@ -2721,7 +2743,10 @@ class VideoList extends Component {
           <div
             className="tab-content mt-3 mb-3"
             id="myTabContent"
-            style={{ borderBottom: "3px solid #4F4F4F", paddingBottom: "0px" }}
+            style={{
+              borderBottom: "3px solid #4F4F4F",
+              paddingBottom: "0px",
+            }}
           >
             <div
               className="tab-pane fade show active"
@@ -2955,8 +2980,8 @@ class VideoList extends Component {
                             </h6>
                           )}
                           {item.play_time &&
-                            item.duration &&
-                            item.play_time / item.duration >=
+                          item.duration &&
+                          item.play_time / item.duration >=
                             completeVideoPlayPercentage ? (
                             <span
                               className="dot"
@@ -3241,7 +3266,6 @@ class VideoList extends Component {
       timesExercise = `${totalMinute}:${totalSecond}`;
     }
 
- 
     return (
       <div className="card-body d-flex justify-content-center">
         <form>
@@ -3498,8 +3522,8 @@ class VideoList extends Component {
                             </h6>
                           )}
                           {item.play_time &&
-                            item.duration &&
-                            item.play_time / item.duration >=
+                          item.duration &&
+                          item.play_time / item.duration >=
                             completeVideoPlayPercentage ? (
                             <span
                               className="dot"
@@ -3739,6 +3763,8 @@ class VideoList extends Component {
       selectExerciseVideoLastWeek,
       showBarveAndBurn,
       exerciseSnack,
+      showchallenge,
+      shownutrition,
     } = this.state;
 
     const { exerciseVideo } = this.props;
@@ -3778,7 +3804,7 @@ class VideoList extends Component {
     }
 
     return (
-      <div className="card-body d-flex justify-content-center">
+      <div className="card-body">
         <form>
           <div
             className="tab-content mt-3 mb-3"
@@ -3791,7 +3817,7 @@ class VideoList extends Component {
               role="tabpanel"
               aria-labelledby="home-tab"
             >
-              <div
+              {/* <div
                 className="row"
                 style={{
                   display: "flex",
@@ -3807,15 +3833,16 @@ class VideoList extends Component {
                     <span></span>
                   )}
                 </h4>
-              </div>
+              </div> */}
 
-              <nav className="nav">
+              <nav className="nav p-2" style={{ background: "#FFF8FB" }}>
                 {numbDayExercise && numbDayExercise >= 1 && (
                   <a
                     className="nav-link"
                     style={{
-                      color: `${!showBarveAndBurn && focusDay === 0 ? "#F45197" : "grey"
-                        }`,
+                      color: `${
+                        !showBarveAndBurn && focusDay === 0 ? "#F45197" : "grey"
+                      }`,
                       cursor: "pointer",
                     }}
                     onClick={() => this.onDayChange(0)}
@@ -3829,8 +3856,9 @@ class VideoList extends Component {
                   <a
                     className="nav-link"
                     style={{
-                      color: `${!showBarveAndBurn && focusDay === 1 ? "#F45197" : "grey"
-                        }`,
+                      color: `${
+                        !showBarveAndBurn && focusDay === 1 ? "#F45197" : "grey"
+                      }`,
                       cursor: "pointer",
                     }}
                     onClick={() => this.onDayChange(1)}
@@ -3845,10 +3873,11 @@ class VideoList extends Component {
                     <a
                       className="nav-link"
                       style={{
-                        color: `${!showBarveAndBurn && focusDay === 2
-                          ? "#F45197"
-                          : "grey"
-                          }`,
+                        color: `${
+                          !showBarveAndBurn && focusDay === 2
+                            ? "#F45197"
+                            : "grey"
+                        }`,
                         cursor: "pointer",
                       }}
                       onClick={() => this.onDayChange(2)}
@@ -3889,7 +3918,7 @@ class VideoList extends Component {
                     </h5>
                   </a>
                 )} */}
-                {
+                {/* {
                   <a
                     className="nav-link"
                     onClick={() => this.onExerciseSnackChange()}
@@ -3900,6 +3929,34 @@ class VideoList extends Component {
                   >
                     <h5>
                       <b> Random Exercise Snack</b>
+                    </h5>
+                  </a>
+                } */}
+                {
+                  <a
+                    className="nav-link"
+                    onClick={() => this.onChallengeChange()}
+                    style={{
+                      color: `${showchallenge ? "#F45197" : "grey"}`,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <h5>
+                      <b> CHALLENGE</b>
+                    </h5>
+                  </a>
+                }
+                {
+                  <a
+                    className="nav-link"
+                    onClick={() => this.onNutritionChange()}
+                    style={{
+                      color: `${shownutrition ? "#F45197" : "grey"}`,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <h5>
+                      <b> NUTRITION</b>
                     </h5>
                   </a>
                 }
@@ -3933,9 +3990,9 @@ class VideoList extends Component {
             </div>
           </div>
 
-          {exerciseSnack ? (
-            <VideoExerciseSnack />
-          ) : (
+          {showchallenge ? <Challenges /> : null}
+          {shownutrition ? <Nutrition /> : null}
+          {!showBarveAndBurn ? (
             <div className="">
               {this.state.autoPlayCheck ? (
                 <div className="trailer" id={`popupVDOList`}>
@@ -4089,8 +4146,8 @@ class VideoList extends Component {
                                 </h6>
                               )}
                               {item.play_time &&
-                                item.duration &&
-                                item.play_time / item.duration >=
+                              item.duration &&
+                              item.play_time / item.duration >=
                                 completeVideoPlayPercentage ? (
                                 <span
                                   className="dot"
@@ -4313,7 +4370,7 @@ class VideoList extends Component {
                 </table>
               )}
             </div>
-          )}
+          ) : null}
         </form>
       </div>
     );
@@ -4428,47 +4485,6 @@ class VideoList extends Component {
         {dailyWeighChallenge &&
           this.props.user &&
           this.renderPopupDailyWeighChallenge()}
-
-        <div className="nav mt-5 mb-4 ml-5" id="myTab" role="tablist">
-          <div className="mr-4 mb-3">
-            <a
-              className="workout Routine"
-              id="home-tab"
-              data-toggle="tab"
-              href="/#/Videdivst"
-              role="tab"
-              aria-controls="home"
-              aria-selected="true"
-              style={{
-                color: "#F45197",
-                borderBottom: "5px solid #F45197",
-                paddingBottom: "2px",
-                textDecorationColor: "white",
-              }}
-            >
-              Workout Routine
-            </a>
-          </div>
-          {/* <li className="nav-item">
-              <a className="nav-link disabled" id="profile-tab" data-toggle="tab" href="/#/VideoList" role="tab" aria-controls="profile" aria-selected="false">รวมคลิปออกกำลังกาย</a>
-            </li> */}
-          {this.props.user && (
-            <div className="">
-              <a
-                className="challenges-cursor"
-                id="contact-tab"
-                data-toggle="tab"
-                onClick={() => this.props.history.push("/challenges")}
-                role="tab"
-                aria-controls="contact"
-                aria-selected="false"
-                style={{ color: "grey", textDecorationColor: "white" }}
-              >
-                ชาเลนจ์
-              </a>
-            </div>
-          )}
-        </div>
         <div
           className="main main-raised"
           style={{
@@ -4485,21 +4501,21 @@ class VideoList extends Component {
               <Success_Modal success_modal_show={this.state.success_modal_show} handleClose={this.hideSuccessModal} /> */}
 
               {this.props.user &&
-                this.props.user.other_attributes &&
-                this.props.statusVideoList !== "no_video"
+              this.props.user.other_attributes &&
+              this.props.statusVideoList !== "no_video"
                 ? editVDO_click === "show"
                   ? this.renderEditVDO()
                   : lastWeekVDO_click === "show"
-                    ? lastWeekVDOAll === true
-                      ? this.renderVideoListLastWeekAll()
-                      : this.renderVideoListLastWeek()
-                    : this.renderVideoList()
+                  ? lastWeekVDOAll === true
+                    ? this.renderVideoListLastWeekAll()
+                    : this.renderVideoListLastWeek()
+                  : this.renderVideoList()
                 : statusGetCheck4WeeksPrompt !== "loading" &&
-                statusGetCheckRenewPrompt !== "loading" &&
-                ((statusCheck4WeeksPrompt || statusCheckRenewPrompt) &&
+                  statusGetCheckRenewPrompt !== "loading" &&
+                  ((statusCheck4WeeksPrompt || statusCheckRenewPrompt) &&
                   step4WeeksPrompt < 4 //ปัจจุบัน (4weeks, renew) Prompt ใช้ render เดียวกัน
-                  ? this.render4WeeksPrompt()
-                  : this.renderOtherAttribute())}
+                    ? this.render4WeeksPrompt()
+                    : this.renderOtherAttribute())}
             </div>
           </div>
         </div>
