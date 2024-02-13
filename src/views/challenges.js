@@ -2916,33 +2916,51 @@ class Challenges extends Component {
       <div>
         <div
           className="card-body d-flex justify-content-center"
-          style={{ backgroundColor: "#D8D6DF" }}
+          // style={{ backgroundColor: "#D8D6DF" }}
         >
           <form className="col-lg-12 col-md-12">
             <div className="row mb-5 mt-3">
               <div className="col-lg-12 mb-5">
-                <nav className="nav">
+                <nav className="nav mb-3">
                   <a
                     className="nav-link"
                     style={{
                       color: `${
-                        selectedNavLink === "mission" ? "#F45197" : ""
+                        selectedNavLink === "mission" ? "#FFFFFF" : "#F45197"
                       }`,
                       cursor: "pointer",
+                      background:
+                        selectedNavLink === "mission" ? "#EF60A3" : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "150px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
                     }}
                     onClick={() =>
                       this.setState({ selectedNavLink: "mission" })
                     }
                   >
-                    <b>ภารกิจ</b>
+                    <b>ภารกิจทั้งหมด</b>
                   </a>
                   <a
                     className="nav-link"
                     style={{
                       color: `${
-                        selectedNavLink === "teamList" ? "#F45197" : ""
+                        selectedNavLink === "teamList" ? "#FFFFFF" : "#F45197"
                       }`,
                       cursor: "pointer",
+                      background:
+                        selectedNavLink === "teamList" ? "#EF60A3" : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "150px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
                     }}
                     onClick={() =>
                       this.setState({
@@ -2958,9 +2976,20 @@ class Challenges extends Component {
                     className="nav-link"
                     style={{
                       color: `${
-                        selectedNavLink === "scoreBoard" ? "#F45197" : ""
+                        selectedNavLink === "scoreBoard" ? "#FFFFFF" : "#F45197"
                       }`,
                       cursor: "pointer",
+                      background:
+                        selectedNavLink === "scoreBoard"
+                          ? "#EF60A3"
+                          : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "150px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
                     }}
                     onClick={() =>
                       this.setState({ selectedNavLink: "scoreBoard" })
@@ -2972,9 +3001,20 @@ class Challenges extends Component {
                     className="nav-link"
                     style={{
                       color: `${
-                        selectedNavLink === "friendList" ? "#F45197" : ""
+                        selectedNavLink === "friendList" ? "#FFFFFF" : "#F45197"
                       }`,
                       cursor: "pointer",
+                      background:
+                        selectedNavLink === "friendList"
+                          ? "#EF60A3"
+                          : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "150px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
                     }}
                     onClick={() =>
                       this.setState({
@@ -2989,9 +3029,22 @@ class Challenges extends Component {
                     className="nav-link"
                     style={{
                       color: `${
-                        selectedNavLink === "achievement" ? "#F45197" : ""
+                        selectedNavLink === "achievement"
+                          ? "#FFFFFF"
+                          : "#F45197"
                       }`,
                       cursor: "pointer",
+                      background:
+                        selectedNavLink === "achievement"
+                          ? "#EF60A3"
+                          : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "150px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
                     }}
                     onClick={() =>
                       this.setState({
@@ -3006,13 +3059,26 @@ class Challenges extends Component {
                     className="nav-link"
                     style={{
                       color: `${
-                        selectedNavLink === "searchMember" ? "#F45197" : ""
+                        selectedNavLink === "searchMember"
+                          ? "#FFFFFF"
+                          : "#F45197"
                       }`,
                       cursor: "pointer",
+                      background:
+                        selectedNavLink === "searchMember"
+                          ? "#EF60A3"
+                          : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "200px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
                     }}
                     onClick={() => this.onSearchMember()}
                   >
-                    <b>ผู้ใช้งานทั้งหมดในระบบ</b>
+                    <b>ผู้ใช้งานทั้งหมด</b>
                   </a>
                 </nav>
                 {selectedNavLink === "mission" && this.renderMission()}

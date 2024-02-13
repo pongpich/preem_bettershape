@@ -162,10 +162,12 @@ export default function Nutrition() {
             />
             <h3 className="mt-2">สารอาหารที่แนะนำ</h3>
           </div>
-          <TableNutritionService
-            columns={columnsNutrients}
-            rows={rowsNutrients}
-          />
+          <div style={{ maxHeight: "600px", overflowY: "auto" }}>
+            <TableNutritionService
+              columns={columnsNutrients}
+              rows={rowsNutrients}
+            />
+          </div>
         </div>
 
         <div className="mt-5">
@@ -177,7 +179,9 @@ export default function Nutrition() {
             />
             <h3 className="mt-3">ประเภทอาหารที่แนะนำ (คาร์โบไฮเดรต)</h3>
           </div>
-          <TableNutritionService columns={columnsCarb} rows={rowsCarb} />
+          <div style={{ maxHeight: "600px", overflowY: "auto" }}>
+            <TableNutritionService columns={columnsCarb} rows={rowsCarb} />
+          </div>
         </div>
 
         <div className="mt-5">
@@ -189,7 +193,12 @@ export default function Nutrition() {
             />
             <h3 className="mt-2">ประเภทอาหารที่แนะนำ (โปรตีน)</h3>
           </div>
-          <TableNutritionService columns={columnsProtein} rows={rowsProtein} />
+          <div style={{ maxHeight: "600px", overflowY: "auto" }}>
+            <TableNutritionService
+              columns={columnsProtein}
+              rows={rowsProtein}
+            />
+          </div>
         </div>
 
         <div className="mt-5">
@@ -201,7 +210,9 @@ export default function Nutrition() {
             />
             <h3 className="mt-2">ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
           </div>
-          <TableNutritionService columns={columnsFat} rows={rowsFat} />
+          <div style={{ maxHeight: "600px", overflowY: "auto" }}>
+            <TableNutritionService columns={columnsFat} rows={rowsFat} />
+          </div>
         </div>
 
         <div className="mt-5">
@@ -228,11 +239,7 @@ export default function Nutrition() {
           </div>
 
           <div className="d-flex align-items-center justify-content-center mt-3">
-            <button
-              className="btn_pink"
-              // style={{ height: "20px" }}
-              onClick={() => {}}
-            >
+            <button className="btn_pink" onClick={() => {}}>
               คำนวณใหม่
             </button>
           </div>

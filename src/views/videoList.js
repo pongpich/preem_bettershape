@@ -1,7 +1,13 @@
 //ByteArk Version
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { Button } from "reactstrap";
+import {
+  Button,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+} from "reactstrap";
 import { connect } from "react-redux";
 import {
   updateProfile,
@@ -122,6 +128,7 @@ class VideoList extends Component {
       exerciseSnack: false,
       showchallenge: false,
       shownutrition: false,
+      dropdownOpen: false,
     };
 
     this.prevPlayTime = 0;
@@ -168,6 +175,10 @@ class VideoList extends Component {
 
   hideSuccessModal = () => {
     this.setState({ success_modal_show: false });
+  };
+
+  toggleDropdown = () => {
+    this.setState((prevState) => ({ dropdownOpen: !prevState.dropdownOpen }));
   };
 
   handlePlayerDropdownChange = (event) => {
@@ -3809,7 +3820,7 @@ class VideoList extends Component {
           <div
             className="tab-content mt-3 mb-3"
             id="myTabContent"
-            style={{ borderBottom: "3px solid #4F4F4F", paddingBottom: "0px" }}
+            // style={{ borderBottom: "3px solid #4F4F4F", paddingBottom: "0px" }}
           >
             <div
               className="tab-pane fade show active"
@@ -3835,59 +3846,86 @@ class VideoList extends Component {
                 </h4>
               </div> */}
 
-              <nav className="nav p-2" style={{ background: "#FFF8FB" }}>
-                {numbDayExercise && numbDayExercise >= 1 && (
-                  <a
-                    className="nav-link"
+              <nav
+                className="nav p-2 d-flex align-items-center"
+                style={{ background: "#FFF8FB" }}
+              >
+                <Dropdown
+                  isOpen={this.state.dropdownOpen}
+                  toggle={this.toggleDropdown}
+                >
+                  <DropdownToggle
+                    caret
                     style={{
-                      color: `${
-                        !showBarveAndBurn && focusDay === 0 ? "#F45197" : "grey"
-                      }`,
-                      cursor: "pointer",
+                      background: "white",
+                      color: "black",
+                      width: "120px",
                     }}
-                    onClick={() => this.onDayChange(0)}
                   >
-                    <h5>
-                      <b>DAY 1</b>
-                    </h5>
-                  </a>
-                )}
-                {numbDayExercise && numbDayExercise >= 2 && (
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: `${
-                        !showBarveAndBurn && focusDay === 1 ? "#F45197" : "grey"
-                      }`,
-                      cursor: "pointer",
-                    }}
-                    onClick={() => this.onDayChange(1)}
-                  >
-                    <h5>
-                      <b>DAY 2</b>
-                    </h5>
-                  </a>
-                )}
-                {this.props.member_info &&
-                  this.props.member_info.exercise_day != 2 && (
+                    Week 1
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>Week2</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+
+                <div className="d-flex align-items-center mt-3">
+                  {numbDayExercise && numbDayExercise >= 1 && (
                     <a
                       className="nav-link"
                       style={{
                         color: `${
-                          !showBarveAndBurn && focusDay === 2
+                          !showBarveAndBurn && focusDay === 0
                             ? "#F45197"
                             : "grey"
                         }`,
                         cursor: "pointer",
                       }}
-                      onClick={() => this.onDayChange(2)}
+                      onClick={() => this.onDayChange(0)}
                     >
                       <h5>
-                        <b>DAY 3</b>
+                        <b>DAY 1</b>
                       </h5>
                     </a>
                   )}
-                {/* {numbDayExercise >= 3 && (
+                  {numbDayExercise && numbDayExercise >= 2 && (
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: `${
+                          !showBarveAndBurn && focusDay === 1
+                            ? "#F45197"
+                            : "grey"
+                        }`,
+                        cursor: "pointer",
+                      }}
+                      onClick={() => this.onDayChange(1)}
+                    >
+                      <h5>
+                        <b>DAY 2</b>
+                      </h5>
+                    </a>
+                  )}
+                  {this.props.member_info &&
+                    this.props.member_info.exercise_day != 2 && (
+                      <a
+                        className="nav-link"
+                        style={{
+                          color: `${
+                            !showBarveAndBurn && focusDay === 2
+                              ? "#F45197"
+                              : "grey"
+                          }`,
+                          cursor: "pointer",
+                        }}
+                        onClick={() => this.onDayChange(2)}
+                      >
+                        <h5>
+                          <b>DAY 3</b>
+                        </h5>
+                      </a>
+                    )}
+                  {/* {numbDayExercise >= 3 && (
                   <a
                     className="nav-link"
                     style={{
@@ -3903,7 +3941,7 @@ class VideoList extends Component {
                   </a>
                 )} */}
 
-                {/* {numbDayExercise >= 4 && (
+                  {/* {numbDayExercise >= 4 && (
                   <a
                     className="nav-link"
                     style={{
@@ -3918,7 +3956,7 @@ class VideoList extends Component {
                     </h5>
                   </a>
                 )} */}
-                {/* {
+                  {/* {
                   <a
                     className="nav-link"
                     onClick={() => this.onExerciseSnackChange()}
@@ -3932,44 +3970,45 @@ class VideoList extends Component {
                     </h5>
                   </a>
                 } */}
-                {
-                  <a
-                    className="nav-link"
-                    onClick={() => this.onChallengeChange()}
-                    style={{
-                      color: `${showchallenge ? "#F45197" : "grey"}`,
-                      cursor: "pointer",
-                    }}
-                  >
-                    <h5>
-                      <b> CHALLENGE</b>
-                    </h5>
-                  </a>
-                }
-                {
-                  <a
-                    className="nav-link"
-                    onClick={() => this.onNutritionChange()}
-                    style={{
-                      color: `${shownutrition ? "#F45197" : "grey"}`,
-                      cursor: "pointer",
-                    }}
-                  >
-                    <h5>
-                      <b> NUTRITION</b>
-                    </h5>
-                  </a>
-                }
+                  {
+                    <a
+                      className="nav-link"
+                      onClick={() => this.onChallengeChange()}
+                      style={{
+                        color: `${showchallenge ? "#F45197" : "grey"}`,
+                        cursor: "pointer",
+                      }}
+                    >
+                      <h5>
+                        <b> CHALLENGE</b>
+                      </h5>
+                    </a>
+                  }
+                  {
+                    <a
+                      className="nav-link"
+                      onClick={() => this.onNutritionChange()}
+                      style={{
+                        color: `${shownutrition ? "#F45197" : "grey"}`,
+                        cursor: "pointer",
+                      }}
+                    >
+                      <h5>
+                        <b> NUTRITION</b>
+                      </h5>
+                    </a>
+                  }
 
-                {this.props.week > 1 && (
-                  <a
-                    className="nav-link ml-auto"
-                    style={{ cursor: "pointer", color: "#F45197" }}
-                    onClick={() => this.videoWeekAll()} //(this.setState({ lastWeekVDO_click: "show" })
-                  >
-                    <u>ดูวีดีโอออกกำลังกายสัปดาห์ที่ผ่านมา</u>
-                  </a>
-                )}
+                  {this.props.week > 1 && (
+                    <a
+                      className="nav-link ml-auto"
+                      style={{ cursor: "pointer", color: "#F45197" }}
+                      onClick={() => this.videoWeekAll()} //(this.setState({ lastWeekVDO_click: "show" })
+                    >
+                      <u>ดูวีดีโอออกกำลังกายสัปดาห์ที่ผ่านมา</u>
+                    </a>
+                  )}
+                </div>
               </nav>
             </div>
             <div

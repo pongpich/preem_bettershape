@@ -3,7 +3,7 @@ import { Table } from "reactstrap";
 
 export default function TableNutritionService({ rows, columns }) {
   return (
-    <Table striped>
+    <Table striped> 
       <thead>
         <tr style={{ background: "#EF60A3", color: "white" }}>
           {columns.map((item) => (
