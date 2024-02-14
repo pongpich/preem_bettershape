@@ -3869,7 +3869,7 @@ class VideoList extends Component {
                   </DropdownMenu>
                 </Dropdown>
 
-                <div className="d-flex align-items-center mt-3">
+                <div className="d-block d-md-flex align-items-center mt-3 flex-md-wrap">
                   {numbDayExercise && numbDayExercise >= 1 && (
                     <a
                       className="nav-link"

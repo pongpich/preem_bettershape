@@ -528,35 +528,90 @@ class Challenges extends Component {
     console.log(rank);
 
     return (
-      <div className="row">
-        {this.renderPopupRulesAndPrizes()}
-        {this.renderPopupScoreDetail()}
-        <div
-          className="card shadow col-lg-7 col-md-12"
-          style={{ borderRadius: "25px" }}
-        >
+      <div>
+        <div className="row">
+          {this.renderPopupRulesAndPrizes()}
+          {this.renderPopupScoreDetail()}
+
           {/* เปิดปิด event ตรงนี้อย่าลืม เอา challengePeriod2 ออกเปลี่ยนเป็น challengePeriod ธรรมดา */}
-          {!this.state.challengePeriod2 ? (
-            <div className="card-body">
-              <div className="row">
-                <div className="col-lg-6  mb-3" style={{ float: "left" }}>
-                  <h5 className="card-title mb-4" style={{ color: "#F45197" }}>
-                    <b>รายการชาเลนจ์แบบทีม</b>
-                  </h5>
-                  <p className="card-text">
-                    ทีมชั่งน้ำหนักครบ {numberOfMembers * 2} ครั้ง{" "}
-                    <span style={{ float: "right", color: "#F45197" }}>
-                      {logWeightTeamCount}/{numberOfMembers * 2}
-                    </span>
-                  </p>
-                  <p className="card-text">
-                    ทีมชั่งน้ำหนักครบ 7 วัน
-                    <span style={{ float: "right", color: "#F45197" }}>
-                      {dailyTeamWeightBonusCount}/7
-                    </span>
-                  </p>
+          {this.state.challengePeriod2 ? (
+            <>
+              <div
+                className="card shadow col-lg-4 col-md-12"
+                style={{ borderRadius: "25px", border: "1px solid #EF60A3",margin:'10px' }}
+              >
+                <div className="card-body">
+                  <div className="row">
+                    <div className="col-12 mb-3">
+                      <h5
+                        className="card-title mb-4"
+                        style={{ color: "#F45197" }}
+                      >
+                        <b>รายการชาเลนจ์แบบทีม</b>
+                      </h5>
+                      <p className="card-text">
+                        ทีมชั่งน้ำหนักครบ {numberOfMembers * 2} ครั้ง{" "}
+                        <span style={{ float: "right", color: "#F45197" }}>
+                          {logWeightTeamCount}/{numberOfMembers * 2}
+                        </span>
+                      </p>
+                      <p className="card-text">
+                        ทีมชั่งน้ำหนักครบ 7 วัน
+                        <span style={{ float: "right", color: "#F45197" }}>
+                          {dailyTeamWeightBonusCount}/7
+                        </span>
+                      </p>
+                    </div>
+                    {/* <div className="col-lg-6 mb-3" style={{ float: "right" }}>
+                    <h5
+                      className="card-title mb-4"
+                      style={{ color: "#F45197" }}
+                    >
+                      <b>รายการชาเลนจ์แบบเดี่ยว</b>
+                    </h5>
+                    <p className="card-text">
+                      ชั่งน้ำหนักครบ 2 ครั้ง{" "}
+                      <span style={{ float: "right", color: "#F45197" }}>
+                        {logWeightCount}/2
+                      </span>
+                    </p>
+                    <p className="card-text">
+                      น้ำหนักลดลงจากสัปดาห์ก่อน
+                      <span style={{ float: "right", color: "#F45197" }}>
+                        {isReducedWeight ? 1 : 0}/1
+                      </span>
+                    </p>
+                    <p className="card-text">
+                      รอบเอวลดลงจากสัปดาห์ก่อน
+                      <span style={{ float: "right", color: "#F45197" }}>
+                        {waistInWeekResult}/1
+                      </span>
+                    </p>
+                    <p className="card-text">
+                      ออกกำลังกายครบทุกวันในสัปดาห์
+                      <span style={{ float: "right", color: "#F45197" }}>
+                        {this.props.statusVideoList !== "no_video"
+                          ? isExerciseCompleted
+                          : 0}
+                        /{exerciseVideo.length}
+                      </span>
+                    </p>
+                    <p className="card-text">
+                      ทำ Random Exercise Snacks สำเร็จ
+                      <span style={{ float: "right", color: "#F45197" }}>
+                        {count ? count : 0}/4
+                      </span>
+                    </p>
+                  </div> */}
+                  </div>
                 </div>
-                <div className="col-lg-6 mb-3" style={{ float: "right" }}>
+              </div>
+
+              <div
+                className="card shadow col-lg-4 col-md-12"
+                style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
+              >
+                <div className="card-body">
                   <h5 className="card-title mb-4" style={{ color: "#F45197" }}>
                     <b>รายการชาเลนจ์แบบเดี่ยว</b>
                   </h5>
@@ -595,45 +650,16 @@ class Challenges extends Component {
                   </p>
                 </div>
               </div>
-              <p
-                className="card-text"
-                style={{ float: "right", fontSize: "15px", color: "red" }}
-              >
-                *รายการจะถูก Reset และสรุปคะแนนทุกวันอาทิตย์ เพื่อคำนวณ Rank
-              </p>
-              <br></br>
-              <hr className="w-100"></hr>
-              <div className="row">
-                <div className="col-lg-3 col-md-6 col-12">
-                  <h5
-                    className="card-title"
-                    style={{
-                      cursor: "pointer",
-                      color: "#F45197",
-                      textDecoration: "underline",
-                    }}
-                    onClick={() => this.openPopupScoreDetail()}
-                  >
-                    รายละเอียดคะแนน
-                  </h5>
-                </div>
-                <div className="col-lg-4 col-md-6 col-12">
-                  <h5
-                    className="card-title"
-                    style={{
-                      cursor: "pointer",
-                      color: "#F45197",
-                      textDecoration: "underline",
-                    }}
-                    onClick={() => this.openPopupRulesAndPrizes()}
-                  >
-                    กฎกติกาและของรางวัล
-                  </h5>
-                </div>
-              </div>
-            </div>
+            </>
           ) : (
-            <div className="card-body" style={{ textAlign: "center" }}>
+            <div
+              className="card-body shadow col-lg-7 col-12 mr-lg-5 mr-0"
+              style={{
+                textAlign: "center",
+                borderRadius: "25px",
+                border: "1px solid #EF60A3",
+              }}
+            >
               <div className="col-12 col-sm-12 col-md-12 col-lg-12 mb-4 mt-4">
                 <img src={`../assets/img/challenges/icon_not_period.png`} />
               </div>
@@ -642,47 +668,91 @@ class Challenges extends Component {
               </p>
             </div>
           )}
-        </div>
-
-        <div
-          className="card shadow col-lg-4 col-md-12  offset-lg-1"
-          style={{ borderRadius: "25px" }}
-        >
-          <div className="card-body">
-            <center>
-              <img
-                src={
-                  rank
-                    ? `../assets/img/rank/${rank.toLowerCase()}.png`
-                    : `../assets/img/rank/newbie.png`
-                }
-                // src={rank && `../assets/img/rank/${rank.toLowerCase()}.png`}
-                className="rounded-circle"
-                alt="Cinque Terre"
-                width="45%"
-                height="45%"
-              />
-              <h3 className="card-title" style={{ color: "#F45197" }}>
-                <b>{rank}</b>
-              </h3>
-              <div
-                class="progress"
-                style={{ width: "70%", borderRadius: "25px" }}
-              >
+          <div
+            className="card shadow col-lg-4 col-md-12"
+            style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
+          >
+            <div className="card-body">
+              <center>
+                <img
+                  src={
+                    rank
+                      ? `../assets/img/rank/${rank.toLowerCase()}.png`
+                      : `../assets/img/rank/newbie.png`
+                  }
+                  // src={rank && `../assets/img/rank/${rank.toLowerCase()}.png`}
+                  className="rounded-circle"
+                  alt="Cinque Terre"
+                  width="45%"
+                  height="45%"
+                />
+                <h3 className="card-title" style={{ color: "#F45197" }}>
+                  <b>{rank}</b>
+                </h3>
                 <div
-                  class="progress-bar"
-                  style={{
-                    width: `${(scoreInWeek / 41) * 100}%`,
-                    backgroundColor: "#F45197",
-                  }}
-                ></div>
-              </div>
-              <h5 className="card-text mt-3 mb-3" style={{ color: "#F45197" }}>
-                {scoreInWeek}/41 คะแนน
-              </h5>
-            </center>
+                  class="progress"
+                  style={{ width: "70%", borderRadius: "25px" }}
+                >
+                  <div
+                    class="progress-bar"
+                    style={{
+                      width: `${(scoreInWeek / 41) * 100}%`,
+                      backgroundColor: "#F45197",
+                    }}
+                  ></div>
+                </div>
+                <h5
+                  className="card-text mt-3 mb-3"
+                  style={{ color: "#F45197" }}
+                >
+                  {scoreInWeek}/41 คะแนน
+                </h5>
+              </center>
+            </div>
           </div>
         </div>
+
+        {!this.state.challengePeriod && (
+          <div
+            className="d-flex flex-lg-row flex-column mt-5"
+            style={{ gap: "20px" }}
+          >
+            <div>
+              <h5
+                className="card-title"
+                style={{
+                  cursor: "pointer",
+                  color: "#F45197",
+                  textDecoration: "underline",
+                }}
+                onClick={() => this.openPopupScoreDetail()}
+              >
+                รายละเอียดคะแนน
+              </h5>
+            </div>
+            <div>
+              <h5
+                className="card-title"
+                style={{
+                  cursor: "pointer",
+                  color: "#F45197",
+                  textDecoration: "underline",
+                }}
+                onClick={() => this.openPopupRulesAndPrizes()}
+              >
+                กฎกติกาและของรางวัล
+              </h5>
+            </div>
+            <div>
+              <p
+                className="card-text"
+                style={{ fontSize: "15px", color: "red" }}
+              >
+                *รายการจะถูก Reset และสรุปคะแนนทุกวันอาทิตย์ เพื่อคำนวณ Rank
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -802,7 +872,7 @@ class Challenges extends Component {
         {selectedTeamInvite ? (
           <div
             className="card shadow col-lg-7 col-md-12"
-            style={{ borderRadius: "25px" }}
+            style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
           >
             <div className="card-body">
               <div className="row mt-4 justify-content-center">
@@ -845,7 +915,7 @@ class Challenges extends Component {
         ) : (
           <div
             className="card shadow col-lg-7 col-md-12"
-            style={{ borderRadius: "25px" }}
+            style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
           >
             {membersOfTeam.length > 0 ? ( //membersOfTeam.length > 0 คือ ผู้ใช้มีทีมแล้ว
               <div className="card-body">
@@ -1006,7 +1076,7 @@ class Challenges extends Component {
 
         <div
           className="card shadow col-lg-4 col-md-12  offset-lg-1"
-          style={{ borderRadius: "25px" }}
+          style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
         >
           <div className="card-body">
             <center style={{ marginTop: "35%", marginBottom: "35%" }}>
@@ -1361,7 +1431,10 @@ class Challenges extends Component {
       <div className="row">
         <div
           className="card shadow col-lg-5 col-md-12 col-12"
-          style={{ borderRadius: "25px" }}
+          style={{
+            borderRadius: "1rem",
+            border: "1px solid #F45197",
+          }}
         >
           <div className="card-body">
             <div className="row">
@@ -1371,11 +1444,13 @@ class Challenges extends Component {
                   color: `${
                     selectedScoreBoard === "team" ? "#F45197" : "grey"
                   }`,
+                  textDecoration:
+                    selectedScoreBoard === "team" ? "underline" : "",
                   cursor: "pointer",
                 }}
                 onClick={() => this.setState({ selectedScoreBoard: "team" })}
               >
-                คะแนนทีม
+                กระดานคะแนนทีม
               </h5>
               <h5
                 className="mr-4"
@@ -1383,13 +1458,15 @@ class Challenges extends Component {
                   color: `${
                     selectedScoreBoard === "individual" ? "#F45197" : "grey"
                   }`,
+                  textDecoration:
+                    selectedScoreBoard === "individual" ? "underline" : "",
                   cursor: "pointer",
                 }}
                 onClick={() =>
                   this.setState({ selectedScoreBoard: "individual" })
                 }
               >
-                คะแนนเดี่ยว
+                กระดานคะแนนเดี่ยว
               </h5>
               {friendsRank && friendsRank.length > 0 && (
                 <h5
@@ -1683,14 +1760,14 @@ class Challenges extends Component {
                   <h5 className="" style={{ textAlign: "center" }}>
                     {" "}
                     <img src={`../assets/img/challenges/vectorinvite.png`} />
-                    &nbsp; ขอเป็นเพื่อน
+                    &nbsp; เพิ่มเพื่อนด้วยชื่อหรืออีเมล์
                   </h5>
                 </div>
                 <div className="col-lg-6">
                   <input
                     type=""
                     className="form-control"
-                    placeholder="อีเมล"
+                    placeholder="กรุณาระบุชื่อผู้ใช้งาน หรือ อีเมล"
                     id="emailAddFriend"
                     value={this.state.emailAddFriend}
                     onChange={(event) => this.handleChange(event)}
@@ -1718,7 +1795,7 @@ class Challenges extends Component {
         ) : (
           <div
             className="card shadow col-lg-7 col-md-12"
-            style={{ borderRadius: "25px" }}
+            style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
           >
             <div className="card-body">
               <div className="row">
@@ -2922,29 +2999,31 @@ class Challenges extends Component {
             <div className="row mb-5 mt-3">
               <div className="col-lg-12 mb-5">
                 <nav className="nav mb-3">
-                  <a
-                    className="nav-link"
-                    style={{
-                      color: `${
-                        selectedNavLink === "mission" ? "#FFFFFF" : "#F45197"
-                      }`,
-                      cursor: "pointer",
-                      background:
-                        selectedNavLink === "mission" ? "#EF60A3" : "#FFFFFF",
-                      border: "1px solid #EF60A3",
-                      width: "150px",
-                      borderRadius: "1rem",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginRight: 20,
-                    }}
-                    onClick={() =>
-                      this.setState({ selectedNavLink: "mission" })
-                    }
-                  >
-                    <b>ภารกิจทั้งหมด</b>
-                  </a>
+                  <div className="mb-3">
+                    <a
+                      className="nav-link"
+                      style={{
+                        color: `${
+                          selectedNavLink === "mission" ? "#FFFFFF" : "#F45197"
+                        }`,
+                        cursor: "pointer",
+                        background:
+                          selectedNavLink === "mission" ? "#EF60A3" : "#FFFFFF",
+                        border: "1px solid #EF60A3",
+                        width: "150px",
+                        borderRadius: "1rem",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        marginRight: 20,
+                      }}
+                      onClick={() =>
+                        this.setState({ selectedNavLink: "mission" })
+                      }
+                    >
+                      <b>ภารกิจทั้งหมด</b>
+                    </a>
+                  </div>
                   <a
                     className="nav-link"
                     style={{

@@ -144,9 +144,9 @@ export default function ControlProblem({ handleNext }) {
           ชอบดื่มเครื่องดื่มที่มีน้ำตาล, น้ำหวาน, น้ำผลไม้
         </label>
       </div>
-      {/* <button className="btn_pink w-100" onClick={handleNext}>
+      <button className="btn_pink w-100" onClick={handleNext}>
         ถัดไป
-      </button> */}
+      </button>
     </div>
   );
 }
