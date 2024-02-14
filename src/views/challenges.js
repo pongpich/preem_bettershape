@@ -529,7 +529,7 @@ class Challenges extends Component {
 
     return (
       <div>
-        <div className="row">
+        <div className="row" style={{ gap: "20px" }}>
           {this.renderPopupRulesAndPrizes()}
           {this.renderPopupScoreDetail()}
 
@@ -538,7 +538,7 @@ class Challenges extends Component {
             <>
               <div
                 className="card shadow col-lg-4 col-md-12"
-                style={{ borderRadius: "25px", border: "1px solid #EF60A3",margin:'10px' }}
+                style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
               >
                 <div className="card-body">
                   <div className="row">
@@ -669,7 +669,7 @@ class Challenges extends Component {
             </div>
           )}
           <div
-            className="card shadow col-lg-4 col-md-12"
+            className="card shadow col-lg-3 col-md-12"
             style={{ borderRadius: "25px", border: "1px solid #EF60A3" }}
           >
             <div className="card-body">
@@ -683,7 +683,7 @@ class Challenges extends Component {
                   // src={rank && `../assets/img/rank/${rank.toLowerCase()}.png`}
                   className="rounded-circle"
                   alt="Cinque Terre"
-                  width="45%"
+                  width="55%"
                   height="45%"
                 />
                 <h3 className="card-title" style={{ color: "#F45197" }}>
@@ -2998,32 +2998,30 @@ class Challenges extends Component {
           <form className="col-lg-12 col-md-12">
             <div className="row mb-5 mt-3">
               <div className="col-lg-12 mb-5">
-                <nav className="nav mb-3">
-                  <div className="mb-3">
-                    <a
-                      className="nav-link"
-                      style={{
-                        color: `${
-                          selectedNavLink === "mission" ? "#FFFFFF" : "#F45197"
-                        }`,
-                        cursor: "pointer",
-                        background:
-                          selectedNavLink === "mission" ? "#EF60A3" : "#FFFFFF",
-                        border: "1px solid #EF60A3",
-                        width: "150px",
-                        borderRadius: "1rem",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        marginRight: 20,
-                      }}
-                      onClick={() =>
-                        this.setState({ selectedNavLink: "mission" })
-                      }
-                    >
-                      <b>ภารกิจทั้งหมด</b>
-                    </a>
-                  </div>
+                <nav className="nav mb-3 d-flex" style={{ gap: "10px" }}>
+                  <a
+                    className="nav-link"
+                    style={{
+                      color: `${
+                        selectedNavLink === "mission" ? "#FFFFFF" : "#F45197"
+                      }`,
+                      cursor: "pointer",
+                      background:
+                        selectedNavLink === "mission" ? "#EF60A3" : "#FFFFFF",
+                      border: "1px solid #EF60A3",
+                      width: "150px",
+                      borderRadius: "1rem",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginRight: 20,
+                    }}
+                    onClick={() =>
+                      this.setState({ selectedNavLink: "mission" })
+                    }
+                  >
+                    <b>ภารกิจทั้งหมด</b>
+                  </a>
                   <a
                     className="nav-link"
                     style={{
