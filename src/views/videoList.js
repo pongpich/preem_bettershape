@@ -1,6 +1,5 @@
 //ByteArk Version
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import {
   Button,
   Dropdown,
@@ -76,6 +75,7 @@ import Modal_Form from "../modals/modal_form";
 import Success_Modal from "../modals/success_modal";
 import Challenges from "./challenges";
 import Nutrition from "./nutrition/nutrition";
+import Bg_login from "../assets/img/bg_login.png";
 
 class VideoList extends Component {
   constructor(props) {
@@ -1801,7 +1801,7 @@ class VideoList extends Component {
       <div>
         <div
           className="card shadow mb-4 col-lg-6 offset-lg-3 col-md-12 col-12"
-          style={{ borderRadius: "20px" }}
+          style={{ borderRadius: "20px", background: "rgba(255,255,255,0.6)" }}
         >
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
@@ -2033,6 +2033,7 @@ class VideoList extends Component {
         style={{
           borderRadius: "8px",
           padding: window.innerWidth >= 922 ? "5px 50px 5px" : "5px",
+          background: "rgba(255,255,255,0.6)",
         }}
       >
         <div className="mt-5 mb-5 col-lg-12  col-md-12 col-12">
@@ -2075,10 +2076,10 @@ class VideoList extends Component {
             }}
           >
             <div className="mb-2">
-              {<img src="../assets/img/male2.png" width="314" alt="" />}
+              {<img src="../assets/img/women2.png" width="314" alt="" />}
             </div>
             <div className="mb-2">
-              {<img src="../assets/img/female2.png" width="314" alt="" />}
+              {<img src="../assets/img/male2.png" width="314" alt="" />}
             </div>
 
             <div className="">
@@ -2151,11 +2152,65 @@ class VideoList extends Component {
                   <h6 style={{ color: "red" }}>กรุณากรอกข้อมูล</h6>
                 </small>
               )}
+              <div className="form-group mb-5" style={{ padding: "0 20px" }}>
+                <div className="text-center">
+                  <div
+                    className="row"
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      flexWrap: "wrap",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div className="mb-2 mr-2">
+                      <button
+                        className="btn-shadow"
+                        onClick={() =>
+                          this.setState({ otherAttributesPage: "basicInfo" })
+                        }
+                        style={{
+                          backgroundColor: "white",
+                          borderColor: "#F45197",
+                          color: "#F45197",
+                          borderRadius: "50px",
+                          width: "200px",
+                          height: "40px",
+                          padding: "0px",
+                        }}
+                      >
+                        ย้อนกลับ
+                      </button>
+                    </div>
+                    <div className="mb-2 ml-lg-2">
+                      <button
+                        className="btn-shadow"
+                        onClick={() =>
+                          this.setState({
+                            otherAttributesPage: "renderBasicBodyInfo",
+                          })
+                        }
+                        style={{
+                          backgroundColor: "#F45197",
+                          borderColor: "#F45197",
+                          color: "white",
+                          borderRadius: "50px",
+                          width: "200px",
+                          height: "40px",
+                          padding: "0px",
+                        }}
+                      >
+                        ยืนยัน
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="space-70 mb-5"></div>
+        {/* <div className="space-70 mb-5"></div>
         <div className="form-group mb-5">
           <div className="text-center">
             <div
@@ -2209,7 +2264,7 @@ class VideoList extends Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -2223,7 +2278,7 @@ class VideoList extends Component {
       <>
         <div
           className="card shadow mb-4 col-lg-8 offset-lg-2 col-md-12 col-12"
-          style={{ borderRadius: "20px" }}
+          style={{ borderRadius: "20px", background: "rgba(255,255,255,0.6)" }}
         >
           <div className="mb-3 col-lg-12  col-md-12 col-12">
             <center>
@@ -4531,6 +4586,8 @@ class VideoList extends Component {
               user && user.other_attributes && statusVideoList !== "no_video"
                 ? "white"
                 : "#F0EEF3",
+            backgroundImage: `url(${Bg_login})`,
+            backgroundSize: "cover",
           }}
         >
           <div className="container">
