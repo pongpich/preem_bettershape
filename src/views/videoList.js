@@ -4586,8 +4586,8 @@ class VideoList extends Component {
               user && user.other_attributes && statusVideoList !== "no_video"
                 ? "white"
                 : "#F0EEF3",
-            backgroundImage: `url(${Bg_login})`,
-            backgroundSize: "cover",
+            // backgroundImage: `url(${Bg_login})`,
+            // backgroundSize: "cover",
           }}
         >
           <div className="container">
