@@ -1,16 +1,26 @@
 import * as React from "react";
 
 const data = [
-  { id: 1, title: "ร้านอาหารทั่วไป, อาหารตามสั่ง, ข้าวแกง" },
-  { id: 2, title: "ร้านสะดวกซื้อ, อาหารกล่อง, อาหารสำเร็จรูป" },
-  { id: 3, title: "ประกอบอาหารทานเอง" },
+  {
+    id: 1,
+    title: "ร้านอาหารทั่วไป, อาหารตามสั่ง, ข้าวแกง",
+    titleEng: "general_restaurant",
+  },
+  {
+    id: 2,
+    title: "ร้านสะดวกซื้อ, อาหารกล่อง, อาหารสำเร็จรูป",
+    titleEng: "convenience_store",
+  },
+  { id: 3, title: "ประกอบอาหารทานเอง", titleEng: "cooking_self" },
 ];
 
-export default function FoodSource({ handleNext }) {
-  const [activeColor, setActiveColor] = React.useState("");
-
-  const handleActiveColor = (id) => {
-    setActiveColor(id);
+export default function FoodSource({
+  handleNext,
+  activeColorFood,
+  setActiveColorFood,
+}) {
+  const handleActiveColor = (titleEng) => {
+    setActiveColorFood(titleEng);
   };
   return (
     <div>
@@ -22,11 +32,11 @@ export default function FoodSource({ handleNext }) {
             border: "1px solid #EF60A3",
             borderRadius: ".5rem",
             padding: "20px",
-            background: activeColor === item.id ? "#FCDEEC" : "",
+            background: activeColorFood === item.titleEng ? "#FCDEEC" : "",
             marginBottom: "20px",
             cursor: "pointer",
           }}
-          onClick={() => handleActiveColor(item.id)}
+          onClick={() => handleActiveColor(item.titleEng)}
         >
           <h5>{item.title}</h5>
         </div>

@@ -7,11 +7,13 @@ const data = [
   { id: 4, title: "81 - 90 กก." },
 ];
 
-export default function WeightChoice({ handleNext }) {
-  const [activeColor, setActiveColor] = React.useState("");
-
+export default function WeightChoice({
+  handleNext,
+  setActiveColorWeight,
+  activeColorWeight,
+}) {
   const handleActiveColor = (id) => {
-    setActiveColor(id);
+    setActiveColorWeight(id);
   };
   return (
     <div>
@@ -23,7 +25,7 @@ export default function WeightChoice({ handleNext }) {
             border: "1px solid #EF60A3",
             borderRadius: ".5rem",
             padding: "20px",
-            background: activeColor === item.id ? "#FCDEEC" : "",
+            background: activeColorWeight === item.id ? "#FCDEEC" : "",
             marginBottom: "20px",
             cursor: "pointer",
           }}

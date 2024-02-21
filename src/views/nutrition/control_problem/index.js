@@ -1,8 +1,18 @@
 import * as React from "react";
 import "./control_problem.scss";
 
-export default function ControlProblem({ handleNext }) {
-  const [cSelected, setCSelected] = React.useState([]);
+export default function ControlProblem({
+  handleNext,
+  setCSelected,
+  cSelected,
+}) {
+  const [checkBoxValue, setCheckBoxValue] = React.useState({
+    eatOften: false,
+    dessert: false,
+    bekary: false,
+    oilyFood: false,
+    sugarDrinks: false,
+  });
 
   const onCheckboxBtnClick = (selected) => {
     const index = cSelected.indexOf(selected);
@@ -13,21 +23,14 @@ export default function ControlProblem({ handleNext }) {
     }
     setCSelected([...cSelected]);
   };
-  const [checkBoxValue, setCheckBoxValue] = React.useState({
-    eatOften: false,
-    dessert: false,
-    bekary: false,
-    oilyFood: false,
-    sugarDrinks: false,
-  });
-  const handleChangeCheckBoxValue = (checkboxName) => {
+
+  const handleChangeCheckBoxValue = (checkboxName, value) => {
+    onCheckboxBtnClick(value);
     setCheckBoxValue((prevState) => ({
       ...prevState,
       [checkboxName]: !prevState[checkboxName],
     }));
-    console.log("checkboxName");
   };
-  console.log("check", checkBoxValue);
 
   return (
     <div>
@@ -50,7 +53,7 @@ export default function ControlProblem({ handleNext }) {
           type="checkbox"
           className="big-checkbox"
           checked={checkBoxValue.eatOften}
-          onChange={() => handleChangeCheckBoxValue("eatOften")}
+          onChange={() => handleChangeCheckBoxValue("eatOften", "1")}
         />
         <label class="form-check-label h5 ml-3" htmlFor="flexCheckDefault">
           ชอบทานจุบจิบ
@@ -72,7 +75,8 @@ export default function ControlProblem({ handleNext }) {
           type="checkbox"
           className="big-checkbox"
           checked={checkBoxValue.dessert}
-          onChange={() => handleChangeCheckBoxValue("dessert")}
+          onChange={() => handleChangeCheckBoxValue("dessert", "2")}
+          value={"1"}
         />
         <label class="form-check-label h5 ml-3" htmlFor="flexCheckDefault">
           ชอบทานของหวาน, ขนมหวาน, ไอศกรีม
@@ -94,7 +98,7 @@ export default function ControlProblem({ handleNext }) {
           type="checkbox"
           className="big-checkbox"
           checked={checkBoxValue.bekary}
-          onChange={() => handleChangeCheckBoxValue("bekary")}
+          onChange={() => handleChangeCheckBoxValue("bekary", "3")}
         />
         <label class="form-check-label h5 ml-3" htmlFor="flexCheckDefault">
           ชอบทานเบเกอรี่, เค้ก, ขนมปังต่างๆ
@@ -116,7 +120,7 @@ export default function ControlProblem({ handleNext }) {
           type="checkbox"
           className="big-checkbox"
           checked={checkBoxValue.oilyFood}
-          onChange={() => handleChangeCheckBoxValue("oilyFood")}
+          onChange={() => handleChangeCheckBoxValue("oilyFood", "4")}
         />
         <label class="form-check-label h5 ml-3" htmlFor="flexCheckDefault">
           ชอบทานอาหารมัน, ของทอด, เนื้อติดมัน
@@ -138,7 +142,7 @@ export default function ControlProblem({ handleNext }) {
           type="checkbox"
           className="big-checkbox"
           checked={checkBoxValue.sugarDrinks}
-          onChange={() => handleChangeCheckBoxValue("sugarDrinks")}
+          onChange={() => handleChangeCheckBoxValue("sugarDrinks", "5")}
         />
         <label class="form-check-label h5 ml-3" htmlFor="flexCheckDefault">
           ชอบดื่มเครื่องดื่มที่มีน้ำตาล, น้ำหวาน, น้ำผลไม้

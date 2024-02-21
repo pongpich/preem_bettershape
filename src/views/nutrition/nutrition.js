@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "./nutrition.scss";
 import WeightChoice from "./weight";
 import ArrowBack from "../../assets/img/arrow_back.png";
@@ -10,6 +10,12 @@ import IconCarb from "../../assets/img/icon_Carb.png";
 import IconProtein from "../../assets/img/icon_protein.png";
 import IconFat from "../../assets/img/icon_fat.png";
 import IconSuggest from "../../assets/img/icon_suggest.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getNutritionFood,
+  createNutritionFood,
+  clearNutritionFood,
+} from "../../redux/nutrition";
 
 const steps = [
   "Select campaign settings",
@@ -92,10 +98,21 @@ const rowsFat = [
   },
 ];
 
-export default function Nutrition() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [isStartStep, setIsStartStep] = React.useState(false);
-  const [progress, setProgress] = React.useState(33.33);
+function Nutrition() {
+  const user = useSelector(({ authUser }) => (authUser ? authUser.user : ""));
+  const { nutritionFoods, statusPostNutritionFood, statusGetNutritionFood } =
+    useSelector(({ nutrition }) => (nutrition ? nutrition : []));
+  const dispatch = useDispatch();
+
+  const [activeStep, setActiveStep] = useState(0);
+  const [isStartStep, setIsStartStep] = useState(false);
+  const [progress, setProgress] = useState(33.33);
+  const [activeColorWeight, setActiveColorWeight] = useState("");
+  const [activeColorFood, setActiveColorFood] = useState("");
+  const [cSelected, setCSelected] = useState([]);
+  const [dataNutritionWeight, setdataNutritionWeight] = useState(
+    nutritionFoods && JSON.parse(nutritionFoods[0].current_weight)
+  );
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -107,6 +124,50 @@ export default function Nutrition() {
     setProgress((prev) => prev - 33.33);
   };
 
+  const handleCreateNutrition = () => {
+    if (activeStep === 3) {
+      dispatch(
+        createNutritionFood(
+          user && user.user_id,
+          activeColorWeight.toString(),
+          activeColorFood,
+          cSelected
+        )
+      );
+    }
+  };
+
+  const tableNutrition = () => {
+    return (
+      dataNutritionWeight &&
+      dataNutritionWeight.map((item) => <h1>Card{item.carb}</h1>)
+    );
+  };
+
+  useEffect(() => {
+    dispatch(getNutritionFood(user && user.user_id));
+  }, []);
+
+  useEffect(() => {
+    if (statusPostNutritionFood === "success") {
+      dispatch(getNutritionFood(user && user.user_id));
+    }
+    if (statusGetNutritionFood === "success") {
+      dispatch(clearNutritionFood());
+    }
+  }, [statusPostNutritionFood, statusGetNutritionFood]);
+
+  useMemo(() => {
+    handleCreateNutrition();
+  }, [activeStep]);
+
+  useMemo(() => {
+    console.log("nutritionFoods", dataNutritionWeight);
+    setdataNutritionWeight(
+      nutritionFoods && JSON.parse(nutritionFoods[0].current_weight)
+    );
+  }, [nutritionFoods]);
+
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
       {!isStartStep ? (
@@ -117,6 +178,9 @@ export default function Nutrition() {
           </button>
         </div>
       ) : null}
+
+      {tableNutrition()}
+      <h1>Demo</h1>
 
       {isStartStep && activeStep !== 3 ? (
         <div className="container-sm">
@@ -154,9 +218,27 @@ export default function Nutrition() {
               ) : null}
             </div>
           </div>
-          {activeStep === 0 && <WeightChoice handleNext={handleNext} />}
-          {activeStep === 1 && <FoodSource handleNext={handleNext} />}
-          {activeStep === 2 && <ControlProblem handleNext={handleNext} />}
+          {activeStep === 0 && (
+            <WeightChoice
+              handleNext={handleNext}
+              activeColorWeight={activeColorWeight}
+              setActiveColorWeight={setActiveColorWeight}
+            />
+          )}
+          {activeStep === 1 && (
+            <FoodSource
+              handleNext={handleNext}
+              activeColorFood={activeColorFood}
+              setActiveColorFood={setActiveColorFood}
+            />
+          )}
+          {activeStep === 2 && (
+            <ControlProblem
+              handleNext={handleNext}
+              setCSelected={setCSelected}
+              cSelected={cSelected}
+            />
+          )}
         </div>
       ) : null}
 
@@ -265,3 +347,5 @@ export default function Nutrition() {
     </div>
   );
 }
+
+export default Nutrition;
