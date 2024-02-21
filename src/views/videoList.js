@@ -4573,12 +4573,14 @@ class VideoList extends Component {
       statusCheckRenewPrompt,
       statusGetCheckRenewPrompt,
     } = this.props;
-
     return (
       <div>
-        {dailyWeighChallenge &&
+        {/* {dailyWeighChallenge &&
           this.props.user &&
-          this.renderPopupDailyWeighChallenge()}
+          this.renderPopupDailyWeighChallenge()} */}
+        {this.state.focusDay == 0 && this.renderPopupDailyWeighChallenge()}
+        {this.state.focusDay == 1 && this.renderPopupDailyWeighChallenge()}
+        {this.state.focusDay == 2 && this.renderPopupDailyWeighChallenge()}
         <div
           className="main main-raised"
           style={{
@@ -4586,8 +4588,6 @@ class VideoList extends Component {
               user && user.other_attributes && statusVideoList !== "no_video"
                 ? "white"
                 : "#F0EEF3",
-            // backgroundImage: `url(${Bg_login})`,
-            // backgroundSize: "cover",
           }}
         >
           <div className="container">

@@ -214,7 +214,8 @@ const BraveAndBurn = () => {
                   borderBottomRightRadius: "0",
                 }}
                 src={require(`../assets/img/brave&burn/brave&burn_complete${week}.png`)}
-              ></img>
+                alt=""
+              />
             ) : (
               <img
                 className="img-fluid"
@@ -225,7 +226,8 @@ const BraveAndBurn = () => {
                   borderBottomRightRadius: "0",
                 }}
                 src={require(`../assets/img/brave&burn/brave&burn${week}.png`)}
-              ></img>
+                alt=""
+              />
             )}
           </div>
 
