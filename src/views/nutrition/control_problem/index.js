@@ -150,7 +150,7 @@ export default function ControlProblem({
         </label>
       </div>
       <button
-        className="btn_pink w-100"
+        className={cSelected.length ? "btn_pink w-100" : "btn_gray w-100"}
         disabled={cSelected.length > 0 ? false : true}
         onClick={() => {
           setIsStartStep(false);

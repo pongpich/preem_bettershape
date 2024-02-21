@@ -42,7 +42,7 @@ export default function FoodSource({
         </div>
       ))}
       <button
-        className="btn_pink w-100"
+        className={activeColorFood ?  "btn_pink w-100" : "btn_gray w-100"}
         disabled={activeColorFood ? false : true}
         onClick={handleNext}
       >

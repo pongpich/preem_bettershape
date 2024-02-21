@@ -116,7 +116,7 @@ function Nutrition() {
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
-      {rowsNutrients.length == 0 && !isStartStep ? (
+      {rowsNutrients.length == 0 && !isStartStep && activeStep !== 3 ? (
         <div className="card_calculate">
           <h3 className="title">เริ่มโปรแกรมคำนวณอาหาร</h3>
           <button className="btn_pink" onClick={() => setIsStartStep(true)}>
