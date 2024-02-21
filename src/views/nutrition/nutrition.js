@@ -114,7 +114,6 @@ function Nutrition() {
     }
   }, [nutritionFoods]);
 
-  // console.log("rowDiet", rowsDiet.map((item) => item.suggest).join(","));
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
       {rowsNutrients.length == 0 && !isStartStep ? (
