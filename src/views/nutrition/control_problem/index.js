@@ -3,6 +3,7 @@ import "./control_problem.scss";
 
 export default function ControlProblem({
   handleNext,
+  setIsStartStep,
   setCSelected,
   cSelected,
 }) {
@@ -148,7 +149,14 @@ export default function ControlProblem({
           ชอบดื่มเครื่องดื่มที่มีน้ำตาล, น้ำหวาน, น้ำผลไม้
         </label>
       </div>
-      <button className="btn_pink w-100" onClick={handleNext}>
+      <button
+        className="btn_pink w-100"
+        disabled={cSelected.length > 0 ? false : true}
+        onClick={() => {
+          setIsStartStep(false);
+          handleNext();
+        }}
+      >
         ถัดไป
       </button>
     </div>

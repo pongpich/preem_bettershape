@@ -34,7 +34,11 @@ export default function WeightChoice({
           <h5>{item.title}</h5>
         </div>
       ))}
-      <button className="btn_pink w-100" onClick={handleNext}>
+      <button
+        className="btn_pink w-100"
+        disabled={activeColorWeight ? false : true}
+        onClick={handleNext}
+      >
         ถัดไป
       </button>
     </div>

@@ -4,7 +4,6 @@ import WeightChoice from "./weight";
 import ArrowBack from "../../assets/img/arrow_back.png";
 import FoodSource from "./foodSource";
 import ControlProblem from "./control_problem";
-import TableNutritionService from "../../components/service_ui/tableNutrition";
 import IconNutrition from "../../assets/img/icon_Nutrition.png";
 import IconCarb from "../../assets/img/icon_Carb.png";
 import IconProtein from "../../assets/img/icon_protein.png";
@@ -16,6 +15,7 @@ import {
   createNutritionFood,
   clearNutritionFood,
 } from "../../redux/nutrition";
+import { Table } from "reactstrap";
 
 const steps = [
   "Select campaign settings",
@@ -29,31 +29,10 @@ const columnsNutrients = [
   { id: 3, title: "หน่วย" },
 ];
 
-const rowsNutrients = [
-  { id: 1, title: "คาร์โบไฮเดรต", amount: "4 - 5", unit: "(ส่วน) /ต่อวัน" },
-  { id: 2, title: "โปรตีน", amount: "8 - 11", unit: "(ส่วน) /ต่อวัน" },
-  { id: 3, title: "ไขมันไม่เกิน", amount: "6", unit: "(ส่วน) /ต่อวัน" },
-];
-
 const columnsCarb = [
   { id: 1, title: "ประเภทอาหาร" },
   { id: 2, title: "ชื่ออาหาร" },
   { id: 3, title: "ปริมาณชั่งตวง" },
-];
-
-const rowsCarb = [
-  {
-    id: 1,
-    title: "คาร์โบไฮเดรต",
-    amount: "ข้าวสวย /ข้าวไม่ขัดสี",
-    unit: "1 ทัพพี (5 ช้อนกินข้าว)",
-  },
-  {
-    id: 2,
-    title: "คาร์โบไฮเดรต",
-    amount: "เส้นพาสต้า มักกะโรนี สปาเเกตตี้ ลวก",
-    unit: "1  ทัพพี",
-  },
 ];
 
 const columnsProtein = [
@@ -62,40 +41,10 @@ const columnsProtein = [
   { id: 3, title: "ปริมาณชั่งตวง" },
 ];
 
-const rowsProtein = [
-  {
-    id: 1,
-    title: "โปรตีน",
-    amount: "เนื้อไก่สุก",
-    unit: "2 ช้อนกินข้าว",
-  },
-  {
-    id: 2,
-    title: "โปรตีน",
-    amount: "เนื้อปลาสุก",
-    unit: "2 ช้อนกินข้าว",
-  },
-];
-
 const columnsFat = [
   { id: 1, title: "ประเภทอาหาร" },
   { id: 2, title: "ชื่ออาหาร" },
   { id: 3, title: "ปริมาณชั่งตวง" },
-];
-
-const rowsFat = [
-  {
-    id: 1,
-    title: "ไขมัน",
-    amount: "น้ำมันหมู/พืช",
-    unit: "1 ช้อนชา",
-  },
-  {
-    id: 2,
-    title: "ไขมัน",
-    amount: "เบคอน",
-    unit: "1 ชิ้น",
-  },
 ];
 
 function Nutrition() {
@@ -103,16 +52,17 @@ function Nutrition() {
   const { nutritionFoods, statusPostNutritionFood, statusGetNutritionFood } =
     useSelector(({ nutrition }) => (nutrition ? nutrition : []));
   const dispatch = useDispatch();
-
   const [activeStep, setActiveStep] = useState(0);
   const [isStartStep, setIsStartStep] = useState(false);
   const [progress, setProgress] = useState(33.33);
   const [activeColorWeight, setActiveColorWeight] = useState("");
   const [activeColorFood, setActiveColorFood] = useState("");
   const [cSelected, setCSelected] = useState([]);
-  const [dataNutritionWeight, setdataNutritionWeight] = useState(
-    nutritionFoods && JSON.parse(nutritionFoods[0].current_weight)
-  );
+  const [rowsNutrients, setRowsNutrients] = useState([]);
+  const [rowsCarb, setRowsCarb] = useState([]);
+  const [rowsProtein, setRowsProtein] = useState([]);
+  const [rowsFat, setRowsFat] = useState([]);
+  const [rowsDiet, setRowsDiet] = useState([]);
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -122,26 +72,6 @@ function Nutrition() {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
     setProgress((prev) => prev - 33.33);
-  };
-
-  const handleCreateNutrition = () => {
-    if (activeStep === 3) {
-      dispatch(
-        createNutritionFood(
-          user && user.user_id,
-          activeColorWeight.toString(),
-          activeColorFood,
-          cSelected
-        )
-      );
-    }
-  };
-
-  const tableNutrition = () => {
-    return (
-      dataNutritionWeight &&
-      dataNutritionWeight.map((item) => <h1>Card{item.carb}</h1>)
-    );
   };
 
   useEffect(() => {
@@ -157,20 +87,37 @@ function Nutrition() {
     }
   }, [statusPostNutritionFood, statusGetNutritionFood]);
 
-  useMemo(() => {
-    handleCreateNutrition();
+  useEffect(() => {
+    if (activeStep === 3) {
+      dispatch(
+        createNutritionFood(
+          user && user.user_id,
+          activeColorWeight.toString(),
+          activeColorFood,
+          cSelected
+        )
+      );
+    }
   }, [activeStep]);
 
   useMemo(() => {
-    console.log("nutritionFoods", dataNutritionWeight);
-    setdataNutritionWeight(
-      nutritionFoods && JSON.parse(nutritionFoods[0].current_weight)
-    );
+    try {
+      if (nutritionFoods.length > 0) {
+        setRowsNutrients(JSON.parse(nutritionFoods[0]?.current_weight));
+        setRowsCarb(JSON.parse(nutritionFoods[0]?.daily_food));
+        setRowsProtein(JSON.parse(nutritionFoods[0]?.daily_food));
+        setRowsFat(JSON.parse(nutritionFoods[0]?.daily_food));
+        setRowsDiet(JSON.parse(nutritionFoods[0]?.diet_problems));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }, [nutritionFoods]);
 
+  // console.log("rowDiet", rowsDiet.map((item) => item.suggest).join(","));
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
-      {!isStartStep ? (
+      {rowsNutrients.length == 0 && !isStartStep ? (
         <div className="card_calculate">
           <h3 className="title">เริ่มโปรแกรมคำนวณอาหาร</h3>
           <button className="btn_pink" onClick={() => setIsStartStep(true)}>
@@ -178,9 +125,6 @@ function Nutrition() {
           </button>
         </div>
       ) : null}
-
-      {tableNutrition()}
-      <h1>Demo</h1>
 
       {isStartStep && activeStep !== 3 ? (
         <div className="container-sm">
@@ -237,12 +181,13 @@ function Nutrition() {
               handleNext={handleNext}
               setCSelected={setCSelected}
               cSelected={cSelected}
+              setIsStartStep={setIsStartStep}
             />
           )}
         </div>
       ) : null}
 
-      {activeStep == 3 ? (
+      {rowsNutrients.length > 0 && !isStartStep ? (
         <div className="container-sm">
           <div>
             <div className="d-flex align-items-center gap-4 mb-3">
@@ -254,10 +199,56 @@ function Nutrition() {
               <h3 className="mt-2">สารอาหารที่แนะนำ</h3>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
-              <TableNutritionService
-                columns={columnsNutrients}
-                rows={rowsNutrients}
-              />
+              <Table striped>
+                <thead>
+                  <tr style={{ background: "#EF60A3", color: "white" }}>
+                    {columnsNutrients.map((item) => (
+                      <th className="text-center" key={item.id}>
+                        {item.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsNutrients.map((item, i) => (
+                    <tr
+                      key={i}
+                      className="text-center"
+                      style={{ background: i === 0 ? "#E8E8E8" : "" }}
+                    >
+                      <td>{item.title_carb}</td>
+                      <td>{item.carb}</td>
+                      <td>{item.unit}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tbody>
+                  {rowsNutrients.map((item, i) => (
+                    <tr
+                      key={i}
+                      className="text-center"
+                      style={{ background: "white" }}
+                    >
+                      <td>{item.title_protein}</td>
+                      <td>{item.protein}</td>
+                      <td>{item.unit}</td>
+                    </tr>
+                  ))}
+                </tbody>
+                <tbody>
+                  {rowsNutrients.map((item, i) => (
+                    <tr
+                      key={i}
+                      className="text-center"
+                      style={{ background: i === 0 ? "#E8E8E8" : "" }}
+                    >
+                      <td>{item.title_fat}</td>
+                      <td>{item.fat}</td>
+                      <td>{item.unit}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
             </div>
           </div>
 
@@ -271,7 +262,32 @@ function Nutrition() {
               <h3 className="mt-3">ประเภทอาหารที่แนะนำ (คาร์โบไฮเดรต)</h3>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
-              <TableNutritionService columns={columnsCarb} rows={rowsCarb} />
+              <Table striped>
+                <thead>
+                  <tr style={{ background: "#EF60A3", color: "white" }}>
+                    {columnsCarb.map((item) => (
+                      <th className="text-center" key={item.id}>
+                        {item.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsCarb
+                    .filter((item) => item.food_type === "คาร์โบไฮเดรต")
+                    .map((item, i) => (
+                      <tr
+                        key={i}
+                        className="text-center"
+                        style={{ background: i === 0 ? "#E8E8E8" : "" }}
+                      >
+                        <td>{item.food_type}</td>
+                        <td>{item.food_name}</td>
+                        <td>{item.unit}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
             </div>
           </div>
 
@@ -285,10 +301,32 @@ function Nutrition() {
               <h3 className="mt-2">ประเภทอาหารที่แนะนำ (โปรตีน)</h3>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
-              <TableNutritionService
-                columns={columnsProtein}
-                rows={rowsProtein}
-              />
+              <Table striped>
+                <thead>
+                  <tr style={{ background: "#EF60A3", color: "white" }}>
+                    {columnsProtein.map((item) => (
+                      <th className="text-center" key={item.id}>
+                        {item.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsProtein
+                    .filter((item) => item.food_type === "โปรตีน")
+                    .map((item, i) => (
+                      <tr
+                        key={i}
+                        className="text-center"
+                        style={{ background: i === 0 ? "#E8E8E8" : "" }}
+                      >
+                        <td>{item.food_type}</td>
+                        <td>{item.food_name}</td>
+                        <td>{item.unit}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
             </div>
           </div>
 
@@ -302,7 +340,32 @@ function Nutrition() {
               <h3 className="mt-2">ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
-              <TableNutritionService columns={columnsFat} rows={rowsFat} />
+              <Table striped>
+                <thead>
+                  <tr style={{ background: "#EF60A3", color: "white" }}>
+                    {columnsFat.map((item) => (
+                      <th className="text-center" key={item.id}>
+                        {item.title}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rowsFat
+                    .filter((item) => item.food_type === "ไขมัน")
+                    .map((item, i) => (
+                      <tr
+                        key={i}
+                        className="text-center"
+                        style={{ background: i === 0 ? "#E8E8E8" : "" }}
+                      >
+                        <td>{item.food_type}</td>
+                        <td>{item.food_name}</td>
+                        <td>{item.unit}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </Table>
             </div>
           </div>
 
@@ -323,10 +386,7 @@ function Nutrition() {
                 borderRadius: "1rem",
               }}
             >
-              <h5>
-                อย่าปล่อยให้หิว พยายามอย่าเก็บอาหารติดตู้เย็น,
-                ทานผลไม้แทนได้บ้าง, หลีกเลี่ยงน้ำตาลอย่าปล่อยให้หิว
-              </h5>
+              <h5>{rowsDiet.map((item) => item.suggest).join(", ")}</h5>
             </div>
 
             <div className="d-flex align-items-center justify-content-center mt-3">
