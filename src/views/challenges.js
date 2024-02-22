@@ -447,7 +447,7 @@ class Challenges extends Component {
 
   isExerciseCompleted(activites) {
     //let isCompleted = true;
-    let count = 4;
+    let count = 3;
 
     //if (activites.length <= 0) isCompleted = false;
 
@@ -484,6 +484,7 @@ class Challenges extends Component {
       waistInWeekResult,
     } = this.props;
     const isExerciseCompleted = this.isExerciseCompleted(exerciseVideo);
+
     var { scoreInWeek } = this.state;
     if (logWeightCount >= 2) {
       scoreInWeek += 10;
