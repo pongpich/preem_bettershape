@@ -74,6 +74,15 @@ function Nutrition() {
     setProgress((prev) => prev - 33.33);
   };
 
+  const handleCalculateAgain = () => {
+    setIsStartStep(true);
+    setActiveStep(0);
+    setProgress(33.33);
+    setActiveColorWeight("");
+    setActiveColorFood("");
+    setCSelected([]);
+  };
+
   useEffect(() => {
     dispatch(getNutritionFood(user && user.user_id));
   }, []);
@@ -389,14 +398,7 @@ function Nutrition() {
             </div>
 
             <div className="d-flex align-items-center justify-content-center mt-3">
-              <button
-                className="btn_pink"
-                onClick={() => {
-                  setIsStartStep(true);
-                  setActiveStep(0);
-                  setProgress(33.33);
-                }}
-              >
+              <button className="btn_pink" onClick={handleCalculateAgain}>
                 คำนวณใหม่
               </button>
             </div>
