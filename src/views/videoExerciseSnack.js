@@ -99,6 +99,7 @@ const VideoExerciseSnack = () => {
         document.getElementById("btn-close").click();
       dispatch(getExerciseSnack(user.user_id, week));
       dispatch(getVideoSnack(user.user_id, week));
+      
     }
   }, [statsUpdateVideoSnack]);
 
