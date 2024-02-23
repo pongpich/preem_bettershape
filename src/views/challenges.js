@@ -3724,7 +3724,7 @@ class Challenges extends Component {
   /* เเชร์  */
   super() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement3.html";
+      "https://preemworkout.pynk.co/achievement/achievement3.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -3784,7 +3784,7 @@ class Challenges extends Component {
 
   wow() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement4.html";
+      "https://preemworkout.pynk.co/achievement/achievement4.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -3842,7 +3842,7 @@ class Challenges extends Component {
 
   thankYou() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement5.html";
+      "https://preemworkout.pynk.co/achievement/achievement5.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -3900,7 +3900,7 @@ class Challenges extends Component {
 
   bang() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement1.html";
+      "https://preemworkout.pynk.co/achievement/achievement1.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -3957,7 +3957,7 @@ class Challenges extends Component {
   }
   staycool() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement6.html";
+      "https://preemworkout.pynk.co/achievement/achievement6.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -4014,7 +4014,7 @@ class Challenges extends Component {
   }
   pop() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement7.html";
+      "https://preemworkout.pynk.co/achievement/achievement7.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -4072,7 +4072,7 @@ class Challenges extends Component {
 
   goodJob() {
     const urlShare =
-      "https://carrotworkout.pynk.co/achievement/achievement8.html";
+      "https://preemworkout.pynk.co/achievement/achievement8.html";
     return (
       <div class="text-center">
         <div class="row justify-content-md-center">
@@ -4132,19 +4132,19 @@ class Challenges extends Component {
     const { numberOfTeamNotFull, statusGetNumberOfTeamNotFull, user } =
       this.props;
     const urlShare1 =
-      "https://carrotworkout.pynk.co/achievement/achievement1.html";
+      "https://preemworkout.pynk.co/achievement/achievement1.html";
     const urlShare3 =
-      "https://carrotworkout.pynk.co/achievement/achievement2.html";
+      "https://preemworkout.pynk.co/achievement/achievement2.html";
     const urlShare4 =
-      "https://carrotworkout.pynk.co/achievement/achievement3.html";
+      "https://preemworkout.pynk.co/achievement/achievement3.html";
     const urlShare5 =
-      "https://carrotworkout.pynk.co/achievement/achievement4.html";
+      "https://preemworkout.pynk.co/achievement/achievement4.html";
     const urlShare6 =
-      "https://carrotworkout.pynk.co/achievement/achievement5.html";
+      "https://preemworkout.pynk.co/achievement/achievement5.html";
     const urlShare7 =
-      "https://carrotworkout.pynk.co/achievement/achievement6.html";
+      "https://preemworkout.pynk.co/achievement/achievement6.html";
     const urlShare8 =
-      "https://carrotworkout.pynk.co/achievement/achievement7.html";
+      "https://preemworkout.pynk.co/achievement/achievement7.html";
     return (
       <>
         <div>
