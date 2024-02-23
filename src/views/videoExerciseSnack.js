@@ -49,8 +49,6 @@ const VideoExerciseSnack = () => {
 
   useEffect(() => {
     dispatch(setHidePopupVideoPlayerSnack(false));
-    dispatch(getExerciseSnack(user.user_id, week));
-    dispatch(getVideoSnack(user && user.user_id, week));
   }, []);
 
   useEffect(() => {

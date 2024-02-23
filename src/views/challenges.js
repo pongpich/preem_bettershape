@@ -112,7 +112,6 @@ class Challenges extends Component {
       this.props.getMaxFriends(this.props.user.user_id);
       this.props.getAchievementLog(this.props.user.user_id);
       this.props.getFriendsRank(this.props.user.user_id);
-      this.props.getExerciseSnack(this.props.user.user_id, this.props.week);
 
       if (this.props.user && this.props.user.group_id) {
         this.props.getLogWeightTeam(this.props.user.group_id);
@@ -505,29 +504,6 @@ class Challenges extends Component {
       scoreInWeek = 41;
     } //เพื่อไม่ให้เกินหลอด
 
-    var filteredExerciseSnack =
-      this.state.videoSnack &&
-      this.state.videoSnack.filter(function (item) {
-        return item.play_time > 0;
-      });
-
-    // นับจำนวน exerciseSnack ที่มี video_id มากกว่า 0
-    var count = filteredExerciseSnack && filteredExerciseSnack.length;
-
-    if (count == 4) {
-      scoreInWeek += 10;
-    }
-    if (count == 5) {
-      scoreInWeek += 15;
-    }
-    if (count == 6) {
-      scoreInWeek += 20;
-    }
-    if (count == 7) {
-      scoreInWeek += 25;
-    }
-    console.log(rank);
-
     return (
       <div>
         <div className="row" style={{ gap: "20px" }}>
@@ -641,12 +617,6 @@ class Challenges extends Component {
                         ? isExerciseCompleted
                         : 0}
                       /{exerciseVideo.length}
-                    </span>
-                  </p>
-                  <p className="card-text">
-                    ทำ Random Exercise Snacks สำเร็จ
-                    <span style={{ float: "right", color: "#F45197" }}>
-                      {count ? count : 0}/4
                     </span>
                   </p>
                 </div>

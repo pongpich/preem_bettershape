@@ -213,9 +213,6 @@ class VideoList extends Component {
       this.props.checkRenewPrompt(user.user_id);
 
       this.props.getAllExerciseActivity(user.user_id);
-      this.props.getExerciseSnack(user.user_id, week);
-      this.props.createExerciseSnack(user && user.user_id);
-      /* this.props.getVideoSnack(user && user.user_id, week); */
 
       /*  */
       //this.props.createBraveAndBurnChallenge(user.user_id);
@@ -299,14 +296,7 @@ class VideoList extends Component {
       exercise_day,
     } = this.props;
 
-    if (statsCreateExerciseSnack == "success") {
-      this.props.getExerciseSnack(user.user_id, week);
-      /*    this.props.getVideoSnack(user.user_id, week); */
-    }
-
-    if (statsGetExerciseSnack == "success") {
-      this.props.clearExerciseSnack();
-    }
+  
 
     if (
       prevProps.statusGetBraveAndBurn !== statusGetBraveAndBurn &&
