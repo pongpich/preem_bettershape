@@ -3895,26 +3895,9 @@ class VideoList extends Component {
                 className="nav p-2 d-flex align-items-center"
                 style={{ background: "#FFF8FB" }}
               >
-                <Dropdown
-                  isOpen={this.state.dropdownOpen}
-                  toggle={this.toggleDropdown}
-                >
-                  <DropdownToggle
-                    caret
-                    style={{
-                      background: "white",
-                      color: "black",
-                      width: "120px",
-                    }}
-                  >
-                    Week 1
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>Week2</DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
+              
 
-                <div className="d-block d-md-flex align-items-center mt-3 flex-md-wrap">
+                <div className="w-100 d-block d-md-flex align-items-center mt-3 flex-md-wrap">
                   {numbDayExercise && numbDayExercise >= 1 && (
                     <a
                       className="nav-link"
