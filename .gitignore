@@ -24,6 +24,7 @@ dist/
 target/
 dist/
 carrotKey.pem.zip
+carrotKey.pem
 
 # JetBrains IDE
 .idea/

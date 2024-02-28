@@ -18,6 +18,7 @@ import {
 import { Table } from "reactstrap";
 import LoadingComponent from "../../components/loading";
 
+/* Demo  */
 const steps = [
   "Select campaign settings",
   "Create an ad group",
