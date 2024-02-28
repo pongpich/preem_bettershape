@@ -23,6 +23,7 @@ dist/
 # Maven
 target/
 dist/
+carrotKey.pem.zip
 
 # JetBrains IDE
 .idea/
