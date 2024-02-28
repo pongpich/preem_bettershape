@@ -6,6 +6,7 @@ export default function ControlProblem({
   setIsStartStep,
   setCSelected,
   cSelected,
+  setIsLoading,
 }) {
   const [checkBoxValue, setCheckBoxValue] = React.useState({
     eatOften: false,
@@ -155,6 +156,7 @@ export default function ControlProblem({
         onClick={() => {
           setIsStartStep(false);
           handleNext();
+          setIsLoading(true);
         }}
       >
         ถัดไป

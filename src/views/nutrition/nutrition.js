@@ -18,7 +18,7 @@ import {
 import { Table } from "reactstrap";
 import LoadingComponent from "../../components/loading";
 
-/* Demo  */
+/* Demo */
 const steps = [
   "Select campaign settings",
   "Create an ad group",
@@ -56,6 +56,7 @@ function Nutrition() {
   const dispatch = useDispatch();
   const [activeStep, setActiveStep] = useState(0);
   const [isStartStep, setIsStartStep] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [progress, setProgress] = useState(33.33);
   const [activeColorWeight, setActiveColorWeight] = useState("");
   const [activeColorFood, setActiveColorFood] = useState("");
@@ -83,7 +84,7 @@ function Nutrition() {
     setActiveColorWeight("");
     setActiveColorFood("");
     setCSelected([]);
-    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -120,17 +121,19 @@ function Nutrition() {
         setRowsProtein(JSON.parse(nutritionFoods[0]?.daily_food));
         setRowsFat(JSON.parse(nutritionFoods[0]?.daily_food));
         setRowsDiet(JSON.parse(nutritionFoods[0]?.diet_problems));
+        setIsLoading(false);
       }
     } catch (error) {
       console.log(error);
     }
   }, [nutritionFoods]);
+  console.log("statusGetNutritionFood", statusGetNutritionFood);
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
-      {(statusGetNutritionFood !== "success" &&
-        nutritionFoods.length === 0 &&
-        activeStep === 3) ||
-        (statusPostNutritionFood === "loading" && <LoadingComponent />)}
+      {statusGetNutritionFood !== "success" &&
+        isLoading &&
+        activeStep === 3 &&
+        statusPostNutritionFood === "loading" && <LoadingComponent />}
 
       {rowsNutrients.length == 0 && !isStartStep && activeStep !== 3 ? (
         <div className="card_calculate">
@@ -197,6 +200,7 @@ function Nutrition() {
               setCSelected={setCSelected}
               cSelected={cSelected}
               setIsStartStep={setIsStartStep}
+              setIsLoading={setIsLoading}
             />
           )}
         </div>
