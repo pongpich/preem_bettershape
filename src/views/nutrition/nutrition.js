@@ -16,6 +16,7 @@ import {
   clearNutritionFood,
 } from "../../redux/nutrition";
 import { Table } from "reactstrap";
+import LoadingComponent from "../../components/loading";
 
 const steps = [
   "Select campaign settings",
@@ -81,6 +82,7 @@ function Nutrition() {
     setActiveColorWeight("");
     setActiveColorFood("");
     setCSelected([]);
+    window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
   };
 
   useEffect(() => {
@@ -122,9 +124,13 @@ function Nutrition() {
       console.log(error);
     }
   }, [nutritionFoods]);
-
   return (
     <div className="d-flex flex-column justify-content-center align-items-center">
+      {(statusGetNutritionFood !== "success" &&
+        nutritionFoods.length === 0 &&
+        activeStep === 3) ||
+        (statusPostNutritionFood === "loading" && <LoadingComponent />)}
+
       {rowsNutrients.length == 0 && !isStartStep && activeStep !== 3 ? (
         <div className="card_calculate">
           <h3 className="title">เริ่มโปรแกรมคำนวณอาหาร</h3>
