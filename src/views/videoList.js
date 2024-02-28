@@ -296,8 +296,6 @@ class VideoList extends Component {
       exercise_day,
     } = this.props;
 
-  
-
     if (
       prevProps.statusGetBraveAndBurn !== statusGetBraveAndBurn &&
       statusGetBraveAndBurn === "success"
@@ -3895,8 +3893,6 @@ class VideoList extends Component {
                 className="nav p-2 d-flex align-items-center"
                 style={{ background: "#FFF8FB" }}
               >
-              
-
                 <div className="w-100 d-block d-md-flex align-items-center mt-3 flex-md-wrap">
                   {numbDayExercise && numbDayExercise >= 1 && (
                     <a
@@ -4548,12 +4544,9 @@ class VideoList extends Component {
     } = this.props;
     return (
       <div>
-        {/* {dailyWeighChallenge &&
+        {dailyWeighChallenge &&
           this.props.user &&
-          this.renderPopupDailyWeighChallenge()} */}
-        {this.state.focusDay == 0 && this.renderPopupDailyWeighChallenge()}
-        {this.state.focusDay == 1 && this.renderPopupDailyWeighChallenge()}
-        {this.state.focusDay == 2 && this.renderPopupDailyWeighChallenge()}
+          this.renderPopupDailyWeighChallenge()}
         <div
           className="main main-raised"
           style={{
