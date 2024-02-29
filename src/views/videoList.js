@@ -1724,6 +1724,14 @@ class VideoList extends Component {
                                       ></img>
                                     );
                                   }
+                                  if (muItem == "cardio") {
+                                    return (
+                                      <img
+                                        className="property-body_part ml-2"
+                                        src={`../assets/img/body_part/cardio_preem.png`}
+                                      ></img>
+                                    );
+                                  }
                                 })}
                             </div>
                           </div>
@@ -3248,6 +3256,14 @@ class VideoList extends Component {
                                         ></img>
                                       );
                                     }
+                                    if (muItem == "cardio") {
+                                      return (
+                                        <img
+                                          className="property-body_part ml-2"
+                                          src={`../assets/img/body_part/cardio_preem.png`}
+                                        ></img>
+                                      );
+                                    }
                                   })}
                               </div>
                             </div>
@@ -3787,6 +3803,14 @@ class VideoList extends Component {
                                         <img
                                           className="property-body_part ml-2"
                                           src={`../assets/img/body_part/PropertyShoulder.png`}
+                                        ></img>
+                                      );
+                                    }
+                                    if (muItem == "cardio") {
+                                      return (
+                                        <img
+                                          className="property-body_part ml-2"
+                                          src={`../assets/img/body_part/cardio_preem.png`}
                                         ></img>
                                       );
                                     }
@@ -4418,6 +4442,14 @@ class VideoList extends Component {
                                             <img
                                               className="property-body_part ml-2"
                                               src={`../assets/img/body_part/PropertyShoulder.png`}
+                                            ></img>
+                                          );
+                                        }
+                                        if (muItem == "cardio") {
+                                          return (
+                                            <img
+                                              className="property-body_part ml-2"
+                                              src={`../assets/img/body_part/cardio_preem.png`}
                                             ></img>
                                           );
                                         }
