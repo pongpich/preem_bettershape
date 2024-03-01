@@ -285,7 +285,7 @@ function Nutrition() {
                 <thead>
                   <tr style={{ background: "#EF60A3", color: "white" }}>
                     {columnsCarb.map((item) => (
-                      <th className="text-center" key={item.id}>
+                      <th className="text-center" style={{width: "50%"}} key={item.id}>
                         {item.title}
                       </th>
                     ))}
@@ -324,7 +324,7 @@ function Nutrition() {
                 <thead>
                   <tr style={{ background: "#EF60A3", color: "white" }}>
                     {columnsProtein.map((item) => (
-                      <th className="text-center" key={item.id}>
+                      <th className="text-center" style={{width: "50%"}} key={item.id}>
                         {item.title}
                       </th>
                     ))}
@@ -359,11 +359,11 @@ function Nutrition() {
               <h3 className="mt-2">ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
-              <Table striped>
+              <Table striped md={2}>
                 <thead>
                   <tr style={{ background: "#EF60A3", color: "white" }}>
                     {columnsFat.map((item) => (
-                      <th className="text-center" key={item.id}>
+                      <th className="text-center" key={item.id} style={{width: "50%"}}>
                         {item.title}
                       </th>
                     ))}
