@@ -496,6 +496,9 @@ class VideoList extends Component {
     }
     if (prevState.autoPlayCheck !== this.state.autoPlayCheck) {
       this.addEventToVideo();
+      if (!this.state.autoPlayCheck) {
+        this.state.selectedVDO = null;
+      }
     }
     if (
       user &&
@@ -596,6 +599,7 @@ class VideoList extends Component {
   }
 
   toggleListLastWeek(index) {
+    console.log("OPEN VIDEO", index);
     const { focusDay, lastWeekVDOAll } = this.state;
 
     if (!lastWeekVDOAll) {
