@@ -499,6 +499,7 @@ class VideoList extends Component {
       if (!this.state.autoPlayCheck) {
         this.state.selectedVDO = null;
       }
+      
     }
     if (
       user &&
