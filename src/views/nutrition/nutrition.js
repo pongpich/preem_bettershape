@@ -32,19 +32,19 @@ const columnsNutrients = [
 ];
 
 const columnsCarb = [
-  { id: 1, title: "ประเภทอาหาร" },
+  // { id: 1, title: "ประเภทอาหาร" },
   { id: 2, title: "ชื่ออาหาร" },
   { id: 3, title: "ปริมาณชั่งตวง" },
 ];
 
 const columnsProtein = [
-  { id: 1, title: "ประเภทอาหาร" },
+  // { id: 1, title: "ประเภทอาหาร" },
   { id: 2, title: "ชื่ออาหาร" },
   { id: 3, title: "ปริมาณชั่งตวง" },
 ];
 
 const columnsFat = [
-  { id: 1, title: "ประเภทอาหาร" },
+  // { id: 1, title: "ประเภทอาหาร" },
   { id: 2, title: "ชื่ออาหาร" },
   { id: 3, title: "ปริมาณชั่งตวง" },
 ];
@@ -300,7 +300,7 @@ function Nutrition() {
                         className="text-center"
                         style={{ background: i === 0 ? "#E8E8E8" : "" }}
                       >
-                        <td>{item.food_type}</td>
+                        {/* <td>{item.food_type}</td> */}
                         <td>{item.food_name}</td>
                         <td>{item.unit}</td>
                       </tr>
@@ -339,7 +339,7 @@ function Nutrition() {
                         className="text-center"
                         style={{ background: i === 0 ? "#E8E8E8" : "" }}
                       >
-                        <td>{item.food_type}</td>
+                        {/* <td>{item.food_type}</td> */}
                         <td>{item.food_name}</td>
                         <td>{item.unit}</td>
                       </tr>
@@ -378,7 +378,7 @@ function Nutrition() {
                         className="text-center"
                         style={{ background: i === 0 ? "#E8E8E8" : "" }}
                       >
-                        <td>{item.food_type}</td>
+                        {/* <td>{item.food_type}</td> */}
                         <td>{item.food_name}</td>
                         <td>{item.unit}</td>
                       </tr>
