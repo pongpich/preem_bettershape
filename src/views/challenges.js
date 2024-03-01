@@ -511,7 +511,7 @@ class Challenges extends Component {
           {this.renderPopupScoreDetail()}
 
           {/* เปิดปิด event ตรงนี้อย่าลืม เอา challengePeriod2 ออกเปลี่ยนเป็น challengePeriod ธรรมดา */}
-          {this.state.challengePeriod2 ? (
+          {this.state.challengePeriod ? (
             <>
               <div
                 className="card shadow col-lg-4 col-md-12"

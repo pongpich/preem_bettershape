@@ -434,7 +434,7 @@ class App extends Component {
           </div>
         </div> */}
         {/* <p className="with-carrot">
-          Preme Better Shape in 60 Days <span className="with-week">IN 8 WEEK</span>
+          Preem Better Shape in 60 Days <span className="with-week">IN 8 WEEK</span>
         </p> */}
         {/* <div className="box-play">
           <img
