@@ -278,8 +278,14 @@ function Nutrition() {
                 alt="demo"
                 style={{ width: 50, height: 50, marginRight: "20px" }}
               />
-              <h3 className="mt-3">ประเภทอาหารที่แนะนำ (คาร์โบไฮเดรต)</h3>
+              <div>
+                <h3 className="mt-3">ประเภทอาหารที่แนะนำ (คาร์โบไฮเดรต)</h3>
+                <span style={{ color: "red", fontSize: "16px" }}>
+                  **ปริมาณชั่งตวงที่แนะนำ นับเป็น 1 ส่วน
+                </span>
+              </div>
             </div>
+
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
               <Table striped>
                 <thead>
@@ -317,7 +323,13 @@ function Nutrition() {
                 alt="demo"
                 style={{ width: 40, height: 40, marginRight: "20px" }}
               />
-              <h3 className="mt-2">ประเภทอาหารที่แนะนำ (โปรตีน)</h3>
+
+              <div>
+                <h3 className="mt-2">ประเภทอาหารที่แนะนำ (โปรตีน)</h3>
+                <span style={{ color: "red", fontSize: "16px" }}>
+                  **ปริมาณชั่งตวงที่แนะนำ นับเป็น 1 ส่วน
+                </span>
+              </div>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
               <Table striped>
@@ -356,7 +368,12 @@ function Nutrition() {
                 alt="demo"
                 style={{ width: 40, height: 40, marginRight: "20px" }}
               />
-              <h3 className="mt-2">ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
+              <div>
+                <h3 className="mt-2">ประเภทอาหารที่แนะนำ (ไขมัน)</h3>
+                <span style={{ color: "red", fontSize: "16px" }}>
+                  **ปริมาณชั่งตวงที่แนะนำ นับเป็น 1 ส่วน
+                </span>
+              </div>
             </div>
             <div style={{ maxHeight: "600px", overflowY: "auto" }}>
               <Table striped>
