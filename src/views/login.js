@@ -18,19 +18,26 @@ class Login extends Component {
 
   componentDidMount() {
     const { user } = this.props;
-    if (user !== null) {
-      this.props.history.push("/videolist");
-    }
+    /*  login auto
+    const hashParams = new URLSearchParams(window.location.hash.split("?")[1]);
+    const encodedParams = hashParams.get("encodedParams");
+
+    if (encodedParams) {
+      const decodedParams = encodedParams && JSON.parse(atob(encodedParams));
+      let password = "123456";
+      this.props.loginUser(decodedParams.key1, password);
+    } */
   }
 
   componentDidUpdate(prevProps) {
     const { status } = this.props;
+
     if (prevProps.status !== status) {
-      if (status === "success") {
+      if (this.props.user) {
         if (this.props.user.authorization === "admin") {
           this.props.history.push("/import-members");
         } else {
-          this.props.history.push("/VideoList");
+          this.props.history.push("/videolist");
         }
       }
       if (
@@ -93,9 +100,7 @@ class Login extends Component {
             </div>
 
             <div className="form-side-login col-lg-6 col-12 w-100 d-flex flex-column align-items-center justify-content-center">
-              <CardTitle className="h3 mb-4 mt-5">
-                {"เข้าสู่ระบบ"}
-              </CardTitle>
+              <CardTitle className="h3 mb-4 mt-5">{"เข้าสู่ระบบ"}</CardTitle>
               <Form onSubmit={(e) => this.onUserLogin(e)} className="w-100">
                 <Label className="form-group2 has-float-label mb-4">
                   {"อีเมลเข้าใช้งาน"}

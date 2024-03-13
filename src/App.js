@@ -56,6 +56,18 @@ class App extends Component {
       "satisfaction_assessment"
     );
     this.props.checkNewsLog(user && user.user_id, "backup_video_player ");
+
+    /* const urlParams = new URLSearchParams(window.location.search);
+
+    // ดึงค่า encodedParams จาก query string
+    const encodedParams = urlParams.get("encodedParams");
+    const decodedParams = encodedParams && JSON.parse(atob(encodedParams));
+
+     const url = "http://localhost:3001/#/login";
+    window.location.href = url;
+    console.log("urlParams", urlParams);
+    console.log("encodedParams", encodedParams);
+    console.log("decodedParams", decodedParams); */
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -234,16 +246,18 @@ class App extends Component {
               </li>
             } */}
             {this.props.user !== null && (
-              <li className="nav-item">
-                <a
-                  className="nav-link"
-                  href="/#"
-                  onClick={() => this.onUserLogout()}
-                  style={{ color: "#F45197", cursor: "pointer" }}
-                >
-                  ออกจากระบบ
-                </a>
-              </li>
+              <>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="/#"
+                    onClick={() => this.onUserLogout()}
+                    style={{ color: "#F45197", cursor: "pointer" }}
+                  >
+                    ออกจากระบบ
+                  </a>
+                </li>
+              </>
             )}
           </ul>
         </div>
@@ -467,7 +481,7 @@ class App extends Component {
           <Route path="/import-Members" component={ImportMembers} />
           {/* <Route path="/Challenges" component={Challenges} /> */}
           <Route path="/Dashboard" component={Dashboard} />
-          <Route path="/VideoList" component={VideoList} />
+          <Route path="/VideoList" component={VideoList} refresh="true" />
           <Route path="/VideoList2" component={VideoList2} />
           <Route path="/BonusChallenge" component={BonusChallenge} />
           {/* <Route path='/platform' component={Platform} />
