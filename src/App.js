@@ -142,7 +142,11 @@ class App extends Component {
     this.props.logoutUser();
     this.props.clearVideoList();
     this.props.clearChallenges();
-    this.props.history.push("/platform");
+    // this.props.history.push("/platform");
+    /*
+   logout เเล้วไป pynk
+     const baseUrl = "http://localhost:3000/#/home";
+    window.location.href = baseUrl; */
   }
 
   renderNavbar() {

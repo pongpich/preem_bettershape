@@ -18,7 +18,7 @@ class Login extends Component {
 
   componentDidMount() {
     const { user } = this.props;
-    /*  login auto
+    // login auto
     const hashParams = new URLSearchParams(window.location.hash.split("?")[1]);
     const encodedParams = hashParams.get("encodedParams");
 
@@ -26,7 +26,7 @@ class Login extends Component {
       const decodedParams = encodedParams && JSON.parse(atob(encodedParams));
       let password = "123456";
       this.props.loginUser(decodedParams.key1, password);
-    } */
+    }
   }
 
   componentDidUpdate(prevProps) {
