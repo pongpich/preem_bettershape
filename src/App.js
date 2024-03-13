@@ -50,12 +50,20 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const { user } = this.props;
+    const { user, status } = this.props;
     this.props.checkQuestionnaireLog(
       user && user.user_id,
       "satisfaction_assessment"
     );
     this.props.checkNewsLog(user && user.user_id, "backup_video_player ");
+
+    if (this.props.user) {
+      if (this.props.user.authorization === "admin") {
+        this.props.history.push("/import-members");
+      } else {
+        this.props.history.push("/videolist");
+      }
+    }
 
     /* const urlParams = new URLSearchParams(window.location.search);
 
@@ -467,6 +475,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("this.props.user", this.props.user);
     return (
       <div className="App" style={{ backgroundColor: "#F0EEF3" }}>
         {/* {this.renderTopbar()} */}
@@ -475,9 +484,10 @@ class App extends Component {
 
         <Switch>
           <Route exact path="/">
-            <Redirect to="/login" />
+            <Redirect to="/VideoList" />
           </Route>
-          <Route path="/login" component={Login} />
+          {<Route path="/login" component={Login} />}
+
           <Route path="/test_gps" component={TestGPS_Permission} />
           <Route path="/test_gps_success" component={TestGPS} />
           {/* <Route path='/register' component={Register} />
