@@ -1,0 +1,3 @@
+[submodule "pynk_header_footer"]
+	path = pynk_header_footer
+	url = git@bitbucket.org:p4ftech/pynk_header_footer.git
